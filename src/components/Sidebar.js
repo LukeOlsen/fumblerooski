@@ -11,23 +11,23 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div class="navbar">
-                <div class="item-nav-container top-item">
+            <div className="navbar">
+                <div className="item-nav-container top-item">
                     <div>
                         <Link to="/">Home</Link>
                     </div>
                 </div>
-                <div class="item-nav-container">
+                <div className="item-nav-container">
                     <div>
                         <Link to="/about">About</Link>
                     </div>
                 </div>
-                <div class="item-nav-container">
+                <div className="item-nav-container">
                     <div>
                         <Link to="/users">Users</Link>
                     </div>
                 </div>
-                <div class="item-nav-container">
+                <div className="item-nav-container">
                     <div>
                         <Link to="/conferences">conferences</Link>
                     </div>
