@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import Team from '../Teams/Team'
+import '../../styles/Conferences/Conferences.css'
+ 
 
-class ConferenceOne extends Component {
-    constructor(props) {
-        super(props) 
+const teams = {
+    "SEC": ['Florida', 'Alabama', 'Georgia', 'LSU'],
+    "Big-12": ['Texas', 'Oklahoma', 'Texas', 'Texas Tech'],
+    "Pac-12": ['USC', 'Cal', 'Stanford', 'Oregon'],
+    "Big-10": ['An Ohio State', 'Michigan', 'Penn State', 'MSU'],
+    "ACC": ['FSU', 'Miami', 'UNC', 'Virginia']
+} 
 
-        this.state ={
-        }
+const ConferenceOne = ({match}) => {
 
-    }
+    console.log(match)
+    let test = match.params.conferenceName
+    console.log(test)
 
+    return (
+        <div className="teams-display">
+            {teams[test].map(team => {
+                return (
+                    <div className="conference-title">
+                        <Link className="Link-style" to={`/team/${team}`} >{team}</Link>
+                    </div>
+                )
+            })}
+            <Route path={`/team/:teamName`} component={Team} />
+        </div>
 
-    componentDidMount() {
-        console.log(this.props)
-    }
-
-    render() {
-        return (
-            <div>
-                 <h1>test</h1>
-            </div>
-        )
-    }
+    )
 }
 
 export default ConferenceOne

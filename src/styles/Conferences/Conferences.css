@@ -1,0 +1,23 @@
+.Link-style {
+    text-decoration: none;
+    color: #efefef
+  }
+
+.Link-style:visited {
+    text-decoration: none;
+}
+
+.conference-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.conference-title {
+    margin: 1.5rem;
+}
+
+.teams-display {
+    display: flex;
+    flex-direction: row;
+}
