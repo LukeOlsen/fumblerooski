@@ -24,12 +24,7 @@ class Sidebar extends Component {
                 </div>
                 <div className="item-nav-container">
                     <div>
-                        <Link to="/users">Users</Link>
-                    </div>
-                </div>
-                <div className="item-nav-container">
-                    <div>
-                        <Link to="/conferences">conferences</Link>
+                        <Link to="/conferences">Conferences</Link>
                     </div>
                 </div>
             </div>

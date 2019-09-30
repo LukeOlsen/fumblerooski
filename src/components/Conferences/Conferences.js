@@ -19,8 +19,6 @@ export default class Conferences extends Component {
     }
 
     render() {
-        console.log(this.props)
-        console.log(this.state)
         return (
             <div>
                  <h1>Conferences</h1>

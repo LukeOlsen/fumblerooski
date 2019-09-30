@@ -14,13 +14,11 @@ const teams = {
 
 const ConferenceOne = ({match}) => {
 
-    console.log(match)
-    let test = match.params.conferenceName
-    console.log(test)
+    let conference = match.params.conferenceName
 
     return (
         <div className="teams-display">
-            {teams[test].map(team => {
+            {teams[conference].map(team => {
                 return (
                     <div className="conference-title">
                         <Link className="Link-style" to={`/team/${team}`} >{team}</Link>
