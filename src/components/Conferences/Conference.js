@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import { connect } from "react-redux";
+import { setTeam } from '../../actions/index'
 import Team from '../Teams/Team'
-import '../../styles/Conferences/Conferences.css'
  
 
 const teams = {
@@ -12,15 +13,29 @@ const teams = {
     "ACC": ['FSU', 'Miami', 'UNC', 'Virginia']
 } 
 
-const ConferenceOne = ({match}) => {
+const mapDispatchToProps = dispatch => {
+    return {
+        setTeam: team => dispatch(setTeam(team)) 
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+
+
+const ConferenceOne = ({match, setTeam}) => {
 
     let conference = match.params.conferenceName
 
     return (
-        <div className="teams-display">
+        <div className="flex flex-row justify-center">
             {teams[conference].map(team => {
                 return (
-                    <div className="conference-title">
+                    <div onClick={() => setTeam(team)} className="m-8">
                         <Link className="Link-style" to={`/team/${team}`} >{team}</Link>
                     </div>
                 )
@@ -31,4 +46,4 @@ const ConferenceOne = ({match}) => {
     )
 }
 
-export default ConferenceOne
+export default connect(mapStateToProps, mapDispatchToProps)(ConferenceOne)

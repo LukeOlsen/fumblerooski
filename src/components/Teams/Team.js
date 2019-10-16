@@ -8,12 +8,11 @@ class Team extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div>
-                    <h1>Welcome to your team</h1>
-                    <h2>{this.props.match.params.teamName}</h2>
+                    <h1 className="mt-8 text-6xl">Welcome to your team</h1>
+                    <h2 className="text-6xl mt-8">{this.props.match.params.teamName}</h2>
                 </div>
             </div>
         )

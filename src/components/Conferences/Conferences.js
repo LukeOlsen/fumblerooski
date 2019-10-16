@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import ConferenceOne from './Conference'
-import '../../styles/Conferences/Conferences.css'
  
 export default class Conferences extends Component {
     constructor(props) {
@@ -21,10 +20,10 @@ export default class Conferences extends Component {
     render() {
         return (
             <div>
-                 <h1>Conferences</h1>
-                 <div className="conference-box">
+                 <h1 className="mb-8 text-6xl">Conferences</h1>
+                 <div className="flex flex-row justify-center">
                     {this.state.conferences.map((conference, id) => {
-                        return <div className="conference-title" key={id}>
+                        return <div className="m-8" key={id}>
                                     <Link className="Link-style" to={`${this.props.match.url}/${conference}`}>{conference}</Link>
                                 </div>
                     })}

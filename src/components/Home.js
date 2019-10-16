@@ -1,10 +1,11 @@
 import React from 'react';
-import '../styles/Home.css'
 
 const Home = () => {
     return (
-        <div className="home-background">
-            <h1>Fumblerooski</h1>
+        <div className="flex justify-center content-center h-screen">
+            <div className="text-6xl">
+                <h1>Fumblerooski</h1>
+            </div>
         </div>
     )
 }
