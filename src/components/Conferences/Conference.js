@@ -15,7 +15,8 @@ const teams = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setTeam: team => dispatch(setTeam(team)) 
+        setTeam: team => dispatch(setTeam(team)), 
+        // fetchTeamData: team => dispatch(fetchTeamData(team))
     }
 }
 

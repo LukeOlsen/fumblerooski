@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+import { connect } from "react-redux";
 import ConferenceOne from './Conference'
+import { fetchConferenceData } from '../../actions/actionsAPI'
+
+const mapDispatchToProps = dispatch => {
+    return {
+        // setTeam: team => dispatch(setTeam(team)), 
+        fetchConferenceData: conference => dispatch(fetchConferenceData(conference))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+
+    }
+}
  
-export default class Conferences extends Component {
+class Conferences extends Component {
     constructor(props) {
         super(props) 
 
@@ -23,7 +38,7 @@ export default class Conferences extends Component {
                  <h1 className="mb-8 text-6xl">Conferences</h1>
                  <div className="flex flex-row justify-center">
                     {this.state.conferences.map((conference, id) => {
-                        return <div className="m-8" key={id}>
+                        return <div onClick={() => this.props.fetchConferenceData(conference)}  className="m-8" key={id+conference}>
                                     <Link className="Link-style" to={`${this.props.match.url}/${conference}`}>{conference}</Link>
                                 </div>
                     })}
@@ -34,3 +49,5 @@ export default class Conferences extends Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Conferences)

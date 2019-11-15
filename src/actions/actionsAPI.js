@@ -1,7 +1,17 @@
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "../reducers/index";
-import thunk from 'redux-thunk';
+import Axios from 'axios'
+import { setTeam, setData } from './index'
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-export default store;
+export function fetchConferenceData(payload) {
+    return (dispatch, getState) => {
+        //B12
+        //PAC
+        Axios.get('https://api.collegefootballdata.com/teams?conference='+payload)
+            .then(res => {
+                console.log(res.data);
+                dispatch(setTeam(payload));
+                dispatch(setData(res));
+            })
+        let tempState = getState()
+        console.log(tempState)
+    }
+}
