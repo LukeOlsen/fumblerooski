@@ -22,9 +22,9 @@ class Conferences extends Component {
         super(props) 
 
         this.state ={
-            conferences: ['SEC', 'ACC', 'Pac-12', 'Big-10', 'Big-12']
+            conferences: [['SEC', 'SEC'], ['ACC', 'ACC'], ['Pac-12', 'PAC'], ['Big-10', 'B1G'], ['Big-12', 'B12']]
         }
-
+        
     }
 
 
@@ -36,10 +36,10 @@ class Conferences extends Component {
         return (
             <div>
                  <h1 className="mb-8 text-6xl">Conferences</h1>
-                 <div className="flex flex-row justify-center">
+                 <div className="flex flex-row justify-center max-w-4xl">
                     {this.state.conferences.map((conference, id) => {
-                        return <div onClick={() => this.props.fetchConferenceData(conference)}  className="m-8" key={id+conference}>
-                                    <Link className="Link-style" to={`${this.props.match.url}/${conference}`}>{conference}</Link>
+                        return <div onClick={() => this.props.fetchConferenceData(conference[1])}  className="m-8" key={id+conference[0]}>
+                                    <Link className="Link-style" to={`${this.props.match.url}/${conference[0]}`}>{conference[0]}</Link>
                                 </div>
                     })}
                  </div>

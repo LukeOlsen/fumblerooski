@@ -1,4 +1,4 @@
-import { SET_TEAM } from '../constants/action-types'
+import { SET_TEAM, SET_CONFERENCE } from '../constants/action-types'
 
 export default function teamReducer(state = [], action) {
     if (action.type === SET_TEAM) {
@@ -6,11 +6,11 @@ export default function teamReducer(state = [], action) {
             ...state,
             team: action.payload
         })
-    } else if (action.type == "SET_DATA") {
+    } else if (action.type === SET_CONFERENCE) {
         console.log(action.payload)
         return Object.assign({}, state, {
             ...state,
-            data: action.payload.data
+            data: action.payload
         })
     }
     return state

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { setTeam, setData } from './index'
+import { setTeam, setData, setConference } from './index'
 
 export function fetchConferenceData(payload) {
     return (dispatch, getState) => {
@@ -7,11 +7,7 @@ export function fetchConferenceData(payload) {
         //PAC
         Axios.get('https://api.collegefootballdata.com/teams?conference='+payload)
             .then(res => {
-                console.log(res.data);
-                dispatch(setTeam(payload));
-                dispatch(setData(res));
+                dispatch(setConference(res.data));
             })
-        let tempState = getState()
-        console.log(tempState)
     }
 }
