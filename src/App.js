@@ -6,6 +6,7 @@ import About from './components/About';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Conferences from './components/Conferences/Conferences';
 import './styles/App.css';
+import Rankings from './components/Rankings/Rankings';
 
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route path="/conferences" component={Conferences} />
             <Route path="/team/:teamName" component={Team} />
+            <Route path="/rankings" component={Rankings} />
           </div>
         </header>
       </div>

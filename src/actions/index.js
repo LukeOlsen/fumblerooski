@@ -1,4 +1,4 @@
-import { SET_TEAM, SET_DATA, SET_CONFERENCE } from '../constants/action-types'
+import { SET_TEAM, SET_DATA, SET_CONFERENCE, SET_RANKINGS } from '../constants/action-types'
 
 export function setTeam(payload) {
     return {type: SET_TEAM, payload}
@@ -10,4 +10,8 @@ export function setData(payload) {
 
 export function setConference(payload) {
     return {type: SET_CONFERENCE, payload}
+}
+
+export function setRankings(payload) {
+    return {type: SET_RANKINGS, payload}
 }

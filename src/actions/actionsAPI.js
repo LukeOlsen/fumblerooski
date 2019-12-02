@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { setTeam, setData, setConference } from './index'
+import { setTeam, setData, setConference, setRankings } from './index'
 
 export function fetchConferenceData(payload) {
     return (dispatch, getState) => {
@@ -9,5 +9,15 @@ export function fetchConferenceData(payload) {
             .then(res => {
                 dispatch(setConference(res.data));
             })
+    }
+}
+
+export function getRankings(payload) {
+    console.log(payload)
+    return (dispatch, getState) => {
+        Axios.get('https://api.collegefootballdata.com/rankings?week='+payload.week+'&year='+payload.year)
+        .then(res => {
+            dispatch(setRankings(res.data))
+        })
     }
 }

@@ -6,8 +6,7 @@ import Team from '../Teams/Team'
 
 const mapDispatchToProps = dispatch => {
     return {
-        setTeam: team => dispatch(setTeam(team)), 
-        // fetchTeamData: team => dispatch(fetchTeamData(team))
+        setTeam: team => dispatch(setTeam(team))
     }
 }
 
@@ -32,12 +31,12 @@ class ConferenceOne extends Component {
             <div className="flex flex-row justify-center flex-wrap">
                 {this.props.teams ? this.props.teams.map(team => {
                     return (
-                        <div onClick={() => setTeam(team)} key={team['id']} className="m-8">
+                        <div onClick={() => this.props.setTeam(team)} key={team['id']} className="m-8">
                             <Link className="Link-style" to={`/team/${team['alt_name3']}`}>{team['alt_name3']}</Link>
                         </div>
                     )
                 }) : ''}
-                <Route path={`/team/:teamName`} component={Team} />
+                <Route path={`/team/:teamName`} render={(props) => <Team {...props} />}  />
             </div>
     
         )

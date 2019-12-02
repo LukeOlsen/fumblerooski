@@ -7,11 +7,10 @@ export default function teamReducer(state = [], action) {
             team: action.payload
         })
     } else if (action.type === SET_CONFERENCE) {
-        console.log(action.payload)
         return Object.assign({}, state, {
             ...state,
             data: action.payload
         })
-    }
+    } 
     return state
 }

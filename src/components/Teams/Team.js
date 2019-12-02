@@ -13,16 +13,21 @@ class Team extends Component {
     constructor(props) {
         super(props)
 
-    }
+        console.log(props.team)
+    }   
 
 
     render() {
+        if (this.props.team) {
+            const styles = {
+                background: this.props.team.alt_color
+            }
+        }
         return (
-            <div>
-                <div>
-                    <h1 className="mt-8 text-6xl">Welcome to your team</h1>
+            <div className="">
+                <div className="flex-row">
                     <h2 className="text-6xl mt-8">{this.props.match.params.teamName}</h2>
-                    {/* <p>{this.props.data}</p> */}
+                    {this.props.team ? <img class="h-40" src={this.props.team.logos[0]} alt=""/> : <div></div>}
                 </div>
             </div>
         )
