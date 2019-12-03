@@ -53,6 +53,7 @@ class Rankings extends Component {
                     <label>
                     Year:
                     <select value={this.state.year} onChange={this.handleYearChange}>
+                        <option selected>select</option>
                         <option selected value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
@@ -62,7 +63,8 @@ class Rankings extends Component {
                     <label>
                         Week:
                         <select value={this.state.week} onChange={this.handleWeekChange}>
-                            <option selected value="1">1</option>
+                            <option selected>select</option>
+                            <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
@@ -82,9 +84,17 @@ class Rankings extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <div>
-                    {this.props.rankings ? this.props.rankings['AP'].map(rank => {
+                    {this.props.rankings ? console.log(this.props.rankings['AP'].ranks) : ''}
+                    {this.props.rankings ? this.props.rankings['AP'].ranks.map(rank => {
                         return (
-                            <div>{rank.team}</div>
+                            <div>{rank.school}</div>
+                        )
+                    }) : '' }
+                </div>
+                <div>
+                {this.props.rankings ? this.props.rankings['CFP'].ranks.map(rank => {
+                        return (
+                            <div>{rank.school}</div>
                         )
                     }) : '' }
                 </div>
