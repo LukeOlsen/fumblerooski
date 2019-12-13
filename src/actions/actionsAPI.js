@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { setTeam, setData, setConference, setRankings } from './index'
+import { setTeam, setData, setConference, setRankings, setRecruits } from './index'
 
 export function fetchConferenceData(payload) {
     return (dispatch, getState) => {
@@ -18,6 +18,16 @@ export function getRankings(payload) {
         Axios.get('https://api.collegefootballdata.com/rankings?week='+payload.week+'&year='+payload.year)
         .then(res => {
             dispatch(setRankings(res.data))
+        })
+    }
+}
+
+export function getTeamRecruiting(payload) {
+    console.log(payload)
+    return (dispatch, getState) => {
+        Axios.get('https://api.collegefootballdata.com/recruiting/players?year='+ payload.year + '&classification=HighSchool&team=' + payload.team)
+        .then(res => {
+            dispatch(setRecruits(res.data))
         })
     }
 }

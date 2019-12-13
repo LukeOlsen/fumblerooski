@@ -50,7 +50,7 @@ class Rankings extends Component {
         return(
             <div className="h-screen w-full overflow-auto">
                 <div>Rankings</div>
-                <form className="text-black" onSubmit={this.handleSubmit}>
+                <form className="text-black mb-10" onSubmit={this.handleSubmit}>
                     <label>
                     Year:
                     <select value={this.state.year} onChange={this.handleYearChange}>
@@ -85,17 +85,19 @@ class Rankings extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <div className="flex flex-row flex-justify-center flex-align-middle">
-                    <div className="flex-1">
-                        {this.props.apRank.ranks ? this.props.apRank.ranks.map(rank => {
+                        {this.props.apRank.ranks ? <div className="flex-1"> 
+                        <h2>AP Poll</h2>
+                        {this.props.apRank.ranks.map(rank => {
                             return (
-                                <div>{rank.school}</div>
+                                <h4 key={rank.school}>{rank.school}</h4>
                             )
-                        }) : '' }
-                    </div>
+                        }) }
+                         </div> : '' }
                     {this.props.cfpRank.ranks ? <div className="flex-1">
+                        <h2>CFP Poll</h2>
                     {this.props.cfpRank.ranks ? this.props.cfpRank.ranks.map(rank => {
                             return (
-                                <div>{rank.school}</div>
+                                <h4 key={rank.school}>{rank.school}</h4>
                             )
                         }) : '' }
                     </div> : ''}
