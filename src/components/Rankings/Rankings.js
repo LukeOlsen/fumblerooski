@@ -11,7 +11,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     console.log(state)
     return {
-        rankings: state.rankingsReducer.rankings
+        apRank: state.rankingsReducer.rankings.apRank,
+        cfpRank: state.rankingsReducer.rankings.cfpRank
     }
 }
 
@@ -47,7 +48,7 @@ class Rankings extends Component {
 
     render() {
         return(
-            <div>
+            <div className="h-screen w-full overflow-auto">
                 <div>Rankings</div>
                 <form className="text-black" onSubmit={this.handleSubmit}>
                     <label>
@@ -83,20 +84,21 @@ class Rankings extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <div>
-                    {this.props.rankings ? console.log(this.props.rankings['AP'].ranks) : ''}
-                    {this.props.rankings ? this.props.rankings['AP'].ranks.map(rank => {
-                        return (
-                            <div>{rank.school}</div>
-                        )
-                    }) : '' }
-                </div>
-                <div>
-                {this.props.rankings ? this.props.rankings['CFP'].ranks.map(rank => {
-                        return (
-                            <div>{rank.school}</div>
-                        )
-                    }) : '' }
+                <div className="flex flex-row flex-justify-center flex-align-middle">
+                    <div className="flex-1">
+                        {this.props.apRank.ranks ? this.props.apRank.ranks.map(rank => {
+                            return (
+                                <div>{rank.school}</div>
+                            )
+                        }) : '' }
+                    </div>
+                    {this.props.cfpRank.ranks ? <div className="flex-1">
+                    {this.props.cfpRank.ranks ? this.props.cfpRank.ranks.map(rank => {
+                            return (
+                                <div>{rank.school}</div>
+                            )
+                        }) : '' }
+                    </div> : ''}
                 </div>
             </div>
         )

@@ -1,7 +1,7 @@
 import { SET_RANKINGS } from '../constants/action-types'
 
 
-export default function rankingsReducer(state = [], action) {
+export default function rankingsReducer(state = {rankings: { apRank: [], cfpRank: []}}, action) {
     if (action.type === SET_RANKINGS) {
         console.log(action.payload)
         let apRankings = [];
@@ -16,8 +16,8 @@ export default function rankingsReducer(state = [], action) {
         return Object.assign({}, state, {
             ...state,
             rankings: {
-                "AP": apRankings,
-                "CFP": cfpRankings
+                apRank: apRankings,
+                cfpRank: cfpRankings
             }
         })
     }
