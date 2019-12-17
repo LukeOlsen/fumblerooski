@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Conferences from './components/Conferences/Conferences';
 import './styles/App.css';
 import Rankings from './components/Rankings/Rankings';
+import Recruits from './components/Recruits/Recruits';
 
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/conferences" component={Conferences} />
             <Route path="/team/:teamName" component={Team} />
             <Route path="/rankings" component={Rankings} />
+            <Route path="/recruits" component={Recruits} />
           </div>
         </header>
       </div>

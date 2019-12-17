@@ -11,7 +11,7 @@ class Recruits extends Component {
     render() {
         return (
             <div>
-                <h1>This is React!</h1>
+                <h1>This is Recruits!</h1>
             </div>
         )
     }

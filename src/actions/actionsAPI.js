@@ -25,7 +25,7 @@ export function getRankings(payload) {
 export function getTeamRecruiting(payload) {
     console.log(payload)
     return (dispatch, getState) => {
-        Axios.get('https://api.collegefootballdata.com/recruiting/players?year='+ payload.year + '&classification=HighSchool&team=' + payload.team)
+        Axios.get(`https://api.collegefootballdata.com/recruiting/players?year=${payload.year}&classification=HighSchool&team=${payload.team}`)
         .then(res => {
             dispatch(setRecruits(res.data))
         })
