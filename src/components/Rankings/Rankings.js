@@ -9,7 +9,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         apRank: state.rankingsReducer.rankings.apRank,
         cfpRank: state.rankingsReducer.rankings.cfpRank
@@ -28,7 +27,6 @@ class Rankings extends Component {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleWeekChange = this.handleWeekChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        console.log(this.props.rankings)
     }
 
     handleYearChange(event) {
@@ -55,7 +53,7 @@ class Rankings extends Component {
                     Year:
                     <select value={this.state.year} onChange={this.handleYearChange}>
                         <option selected>select</option>
-                        <option selected value="2019">2019</option>
+                        <option value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
                     </select>
