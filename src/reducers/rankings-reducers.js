@@ -1,3 +1,4 @@
+import initialData from '../data/data';
 import { SET_RANKINGS } from '../constants/action-types'
 
 

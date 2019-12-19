@@ -1,6 +1,7 @@
-import { SET_TEAM, SET_CONFERENCE } from '../constants/action-types'
+import { SET_TEAM, SET_CONFERENCE } from '../constants/action-types';
+import teamsList from '../data/teamsList';
 
-export default function teamReducer(state = [], action) {
+export default function teamReducer(state = {teamsList: teamsList}, action) {
     if (action.type === SET_TEAM) {
         return Object.assign({}, state, {
             ...state,

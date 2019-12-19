@@ -14,12 +14,13 @@ import Recruits from './components/Recruits/Recruits';
 
 
 function App() {
+
   return (
     <Router>
       <div className="App flex">
         <Navbar className="w-3" />
         <header className="App-header flex-grow">
-          <div className="text-center m-auto mt-8">
+          <div className="text-center m-auto mt-8 overflow-y-scroll">
             <Route exact path="/" exact component={Home} />
             <Route exact path="/about" component={About} />
             <Route path="/conferences" component={Conferences} />

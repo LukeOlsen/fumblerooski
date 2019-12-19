@@ -32,7 +32,7 @@ class Rankings extends Component {
     handleYearChange(event) {
         // console.log(event.target.value)
         this.setState({year: event.target.value});
-        console.log(this.state.year)
+        console.log(this.props)
       }
 
     handleWeekChange(event) {

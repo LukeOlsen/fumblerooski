@@ -11,7 +11,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        recruits: state.recruitingReducer.recruits
+        recruits: state.recruitingReducer.recruits,
+        teamsList: state.teamReducer.teamsList
     }
 }
 
@@ -46,29 +47,38 @@ class Recruits extends Component {
 
     render() {
         return (
-            <div className="max-h-full overflow-scroll">
+            <div className="h-screen overflow-auto">
                 <h1>This is Recruits!</h1>
                 <form onSubmit={this.handleSubmit}>
                     <select className="text-black m-10 w-30" value={this.state.year} onChange={this.handleYearChange}>
                         <option selected>select</option>
+                        <option>2020</option>
+                        <option>2019</option>
                         <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
                     </select>
 
                     <select className="text-black m-10 w-30" value={this.state.team} onChange={this.handleTeamChange}>
                         <option selected>select</option>
-                        <option>Florida</option>
-                        <option>Alabama</option>
+                        {this.props.teamsList.map(team => {
+                            return (
+                                <option key={team.school}>{team.school}</option>
+                            )
+                        })}
 
                     </select>
                     <input type="submit" value="Submit" />
                 </form>
-                <div>
+                <div className="max-h-full overflow-y-scroll">
                     {this.props.recruits.length > 0 ?
                     
                     <div>
                         {this.props.recruits.map(recruit => {
                             return (
-                                <div>{recruit.name}</div>
+                                <div key={recruit.name}>{recruit.name}</div>
                             )
                         })}
                     </div>

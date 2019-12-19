@@ -5,6 +5,8 @@ import store from "./store/index";
 import './styles/tailwind.css';
 import App from './App';
 
+console.log(store.getState())
+
 ReactDOM.render(
     <Provider store={store}>
         <App />        
