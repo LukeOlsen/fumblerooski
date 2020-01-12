@@ -46,7 +46,7 @@ class Rankings extends Component {
 
     render() {
         return(
-            <div className="h-screen w-full overflow-auto">
+            <div className="h-screen w-full">
                 <div>Rankings</div>
                 <form className="text-black mb-10" onSubmit={this.handleSubmit}>
                     <label>

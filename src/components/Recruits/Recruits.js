@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { getTeamRecruiting } from '../../actions/actionsAPI';
+import RecruitProfile from './RecruitProfile';
 
 
 const mapDispatchToProps = dispatch => {
@@ -47,7 +48,7 @@ class Recruits extends Component {
 
     render() {
         return (
-            <div className="h-screen overflow-auto">
+            <div className="h-screen">
                 <h1>This is Recruits!</h1>
                 <form onSubmit={this.handleSubmit}>
                     <select className="text-black m-10 w-30" value={this.state.year} onChange={this.handleYearChange}>
@@ -72,13 +73,14 @@ class Recruits extends Component {
                     </select>
                     <input type="submit" value="Submit" />
                 </form>
-                <div className="max-h-full overflow-y-scroll">
+                <div className="max-h-full">
                     {this.props.recruits.length > 0 ?
                     
-                    <div>
-                        {this.props.recruits.map(recruit => {
+                    <div className="flex flex-col justify-center text-left">
+                        {this.props.recruits.map((recruit, index) => {
+                            
                             return (
-                                <div key={recruit.name}>{recruit.name}</div>
+                            <RecruitProfile key={recruit.name} index={index} recruit={recruit} />
                             )
                         })}
                     </div>
