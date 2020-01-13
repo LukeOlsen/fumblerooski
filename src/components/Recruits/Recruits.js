@@ -17,6 +17,23 @@ const mapStateToProps = state => {
     }
 }
 
+const RecruitRender = props => {
+    if (props.recruits.length > 0) {
+        return (
+            <div className="flex flex-col justify-center text-left">
+                {props.recruits.map((recruit, index) => {
+                    return (
+                        <RecruitProfile key={recruit.name} index={index} recruit={recruit} />
+                    )
+                })}
+            </div>            
+        )
+    }
+    return (
+        <div></div>
+    )
+}
+
 class Recruits extends Component {
 
     constructor(props) {
@@ -69,25 +86,11 @@ class Recruits extends Component {
                                 <option key={team.school}>{team.school}</option>
                             )
                         })}
-
                     </select>
                     <input type="submit" value="Submit" />
                 </form>
                 <div className="max-h-full">
-                    {this.props.recruits.length > 0 ?
-                    
-                    <div className="flex flex-col justify-center text-left">
-                        {this.props.recruits.map((recruit, index) => {
-                            
-                            return (
-                            <RecruitProfile key={recruit.name} index={index} recruit={recruit} />
-                            )
-                        })}
-                    </div>
-                    
-                    : 
-                    
-                    ''}
+                    <RecruitRender recruits={this.props.recruits} />
                 </div>
             </div>
         )

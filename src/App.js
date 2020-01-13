@@ -19,7 +19,7 @@ function App() {
     <Router>
       <div className="App flex">
         <Navbar className="w-3" />
-        <header className="App-header flex-grow">
+        <div className="App-header flex-grow">
           <div className="text-center m-auto mt-8 max-h-full overflow-y-scroll">
             <Route exact path="/" exact component={Home} />
             <Route exact path="/about" component={About} />
@@ -28,7 +28,7 @@ function App() {
             <Route path="/rankings" component={Rankings} />
             <Route path="/recruits" component={Recruits} />
           </div>
-        </header>
+        </div>
       </div>
     </Router>
   );
