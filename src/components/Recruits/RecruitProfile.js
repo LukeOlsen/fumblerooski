@@ -5,15 +5,16 @@ class RecruitProfile extends Component {
     constructor(props) {
         super(props)
 
-
     }
 
     render() {
         return (
-            <div className="md:flex w-1/3 border-gray-100">
-                <div className="mx-5">{this.props.recruit.name}</div>
-                <div className="mx-5">{this.props.recruit.position}</div>
-                <div className="mx-5">{this.props.recruit.height}</div>
+            <div className="flex justify-between border border-gray-100 text-lg m-1">
+                <div className="">{this.props.recruit.stars}</div>
+                <div className="">{this.props.recruit.name}</div>
+                <div className="">{this.props.recruit.position}</div>
+                <div className="">{this.props.recruit.stateProvince}</div>
+                <div className="">{this.props.recruit.height}, {this.props.recruit.weight}</div>
             </div>
         )
     }
