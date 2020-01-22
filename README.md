@@ -1,1 +1,0 @@
-This is a simple college football app I wanted to build to experiment with React, Redux, Tailwind, Node, Express, and MySql.
