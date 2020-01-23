@@ -3,6 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
+const connection = mysql.createConnection({
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASS,
+    database : process.env.DB_NAME
+  });
+
+connection.connect();
+ 
+connection.query('SELECT SchoolsFBS.school FROM fumblerooski_test.SchoolsFBS WHERE id=2 ', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The school is: ', results[0].school);
+});
+ 
+connection.end();
+
 const app = express();
 const port = process.env.PORT || 5000;
 
