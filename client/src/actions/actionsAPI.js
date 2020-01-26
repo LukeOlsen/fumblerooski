@@ -5,9 +5,8 @@ export function fetchConferenceData(payload) {
     return (dispatch, getState) => {
         //B12
         //PAC
-        Axios.get('/teams/'+payload)
+        Axios.get('https://api.collegefootballdata.com/teams?conference='+payload)
             .then(res => {
-                console.log(res)
                 dispatch(setConference(res.data));
             })
     }
