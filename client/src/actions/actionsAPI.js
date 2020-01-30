@@ -5,9 +5,15 @@ export function fetchConferenceData(payload) {
     return (dispatch, getState) => {
         //B12
         //PAC
-        Axios.get('https://api.collegefootballdata.com/teams?conference='+payload)
+        console.log(payload)
+        Axios.get('/api/conference/'+payload)
             .then(res => {
-                dispatch(setConference(res.data));
+                let confTeams = []
+                res.data.forEach(team => {
+                    confTeams.push(team.school)
+                })
+                console.log(confTeams)
+                dispatch(setConference(confTeams));
             })
     }
 }

@@ -25,14 +25,14 @@ class ConferenceOne extends Component {
 
     }
 
-
     render() {
+        console.log(this.props)
         return (
             <div className="flex flex-row justify-center flex-wrap">
                 {this.props.teams ? this.props.teams.map(team => {
                     return (
                         <div onClick={() => this.props.setTeam(team)} key={team['id']} className="m-8">
-                            <Link className="Link-style" to={`/team/${team['alt_name3']}`}>{team['alt_name3']}</Link>
+                            <Link className="Link-style" to={`/team/${team}`}>{team}</Link>
                         </div>
                     )
                 }) : ''}

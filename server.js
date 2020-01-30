@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const teams = require('./API/Teams/TeamQueries')
 
 
 
@@ -21,5 +22,15 @@ app.post('/api/world', (req, res) => {
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
 });
+
+app.get('/api/conference/:conference', async (req, res) => {
+  console.log(req.params.conference)
+  let teamData
+  console.log("call before")
+  teamData = await teams.sendTeams(req.params.conference)
+  console.log(teamData)
+  console.log("after")
+  res.json(teamData)
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
