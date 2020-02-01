@@ -2,7 +2,7 @@ const mysql = require("mysql");
 const { promisify } = require("util");
 const config = require("../../connections");
 
-const sendTeams = async conference => {
+const sendConference = async conference => {
   let connection = mysql.createConnection(config);
   let promisfydbconnection = promisify(connection.query).bind(connection);
 
@@ -10,4 +10,4 @@ const sendTeams = async conference => {
   return await promisfydbconnection(sql);
 };
 
-exports.sendTeams = sendTeams;
+exports.sendConference = sendConference;
