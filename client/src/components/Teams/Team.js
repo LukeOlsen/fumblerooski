@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch => {
 
 const RenderLogo = props => {
   console.log(props);
-  if (props.teamData) {
-    return <img class="h-40" src={this.props.teamData.logos_1} alt="" />;
+  if (props) {
+    return <img class="h-40" src={props.logos_1} alt="" />;
   } else {
     return <span></span>;
   }
