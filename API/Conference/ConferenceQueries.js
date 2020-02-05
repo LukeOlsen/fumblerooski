@@ -4,10 +4,10 @@ const config = require("../../connections");
 
 const sendConference = async conference => {
   let connection = mysql.createConnection(config);
-  let promisfydbconnection = promisify(connection.query).bind(connection);
+  let promDbConn = promisify(connection.query).bind(connection);
 
   const sql = `SELECT SchoolsFBS.school FROM fumblerooski_test.SchoolsFBS WHERE conference="${conference}"`;
-  return await promisfydbconnection(sql);
+  return await promDbConn(sql);
 };
 
 exports.sendConference = sendConference;

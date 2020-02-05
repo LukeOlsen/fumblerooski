@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { setTeam } from "../../actions/index";
+import { getTeamData } from "../../actions/Teams/TeamsAPI";
 import Team from "../Teams/Team";
 
 const mapDispatchToProps = dispatch => {
   return {
-    setTeam: team => dispatch(setTeam(team))
+    setTeam: team => dispatch(setTeam(team)),
+    getTeamData: team => dispatch(getTeamData(team))
   };
 };
 
