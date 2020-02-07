@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const conference = require("./API/Conference/ConferenceQueries");
-const teamQ = require("./API/Teams/TeamQueries");
+const conference = require("./models/Conference/ConferenceQueries");
+const teamQ = require("./models/Teams/TeamQueries");
 const app = express();
 const port = process.env.PORT || 5000;
 
