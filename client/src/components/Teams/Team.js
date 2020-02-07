@@ -46,11 +46,9 @@ class Team extends Component {
       };
     }
     return (
-      <div className="">
-        <div className="flex-row">
-          <h2 className="text-6xl mt-8">{this.props.match.params.teamName}</h2>
-          {this.props.teamData ? <RenderLogo {...this.props.teamData} /> : ""}
-        </div>
+      <div className="flex-row">
+        <h2 className="text-6xl mt-8">{this.props.match.params.teamName}</h2>
+        {this.props.teamData ? <RenderLogo {...this.props.teamData} /> : ""}
       </div>
     );
   }
