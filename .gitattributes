@@ -1,1 +1,1 @@
-tailwind.css -linguist-vendored
+./client/src/styles/tailwind.css -linguist-vendored
