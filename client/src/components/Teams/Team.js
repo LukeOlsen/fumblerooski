@@ -18,9 +18,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 const RenderLogo = props => {
-  console.log(props);
   if (props) {
-    return <img class="h-40" src={props.logos_1} alt="" />;
+    return <img className="h-40" src={props.logos_1} alt="" />;
   } else {
     return <span></span>;
   }
@@ -29,13 +28,10 @@ const RenderLogo = props => {
 class Team extends Component {
   constructor(props) {
     super(props);
-
-    console.log(props);
   }
 
   componentDidMount() {
     this.props.getTeamData(this.props.team);
-    console.log(this.props);
   }
 
   render() {
