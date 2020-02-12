@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const conference = require("../models/Conference/ConferenceQueries");
-const teamQ = require("../models/Teams/TeamQueries");
+const conference = require("../Conference/ConferenceQueries");
+const teamQ = require("../Teams/TeamQueries");
 
 router.get("/conference/:conference", async (req, res) => {
   let confData;
