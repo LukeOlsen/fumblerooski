@@ -36,15 +36,3 @@ export function getRankings(payload) {
     });
   };
 }
-
-export function getTeamRecruiting(payload) {
-  console.log(payload);
-  return (dispatch, getState) => {
-    Axios.get(
-      `https://api.collegefootballdata.com/recruiting/players?year=${payload.year}&classification=HighSchool&team=${payload.team}`
-    ).then(res => {
-      console.log(res.data);
-      dispatch(setRecruits(res.data));
-    });
-  };
-}
