@@ -20,13 +20,89 @@ class Conferences extends Component {
     super(props);
 
     this.state = {
-      conferences: [
+      conferencesApi: [
         ["SEC", "SEC"],
         ["ACC", "ACC"],
         ["Pac-12", "PAC"],
         ["Big-10", "B1G"],
         ["Big-12", "B12"]
-      ]
+      ],
+      conferenceTeams: {
+        SEC: [
+          "Alabama",
+          "Auburn",
+          "Arkansas",
+          "Florida",
+          "Georgia",
+          "Kentucky",
+          "LSU",
+          "Missouri",
+          "Ole Miss",
+          "Vanderbilt",
+          "Texas A&M",
+          "Mississippi State",
+          "South Carolina",
+          "Tennessee"
+        ],
+        ACC: [
+          "Florida State",
+          "Georgia Tech",
+          "Louisville",
+          "Boston College",
+          "NC State",
+          "Duke",
+          "North Carolina",
+          "Wake Forest",
+          "Syracuse",
+          "Pittsburgh",
+          "Clemson",
+          "Virginia",
+          "Virginia Tech",
+          "Miami"
+        ],
+        Pac12: [
+          "Arizona State",
+          "Arizona",
+          "Stanford",
+          "California",
+          "UCLA",
+          "USC",
+          "Colorado",
+          "Oregon State",
+          "Utah",
+          "Washington",
+          "Washington State",
+          "Oregon"
+        ],
+        Big10: [
+          "Northwestern",
+          "Indiana",
+          "Maryland",
+          "Michigan State",
+          "Michigan",
+          "Minnesota",
+          "Nebraska",
+          "Rutgers",
+          "Ohio State",
+          "Penn State",
+          "Wisconsin",
+          "Illinois",
+          "Iowa",
+          "Purdue"
+        ],
+        Big12: [
+          "Iowa State",
+          "Oklahoma State",
+          "Oklahoma",
+          "Baylor",
+          "Texas",
+          "West Virginia",
+          "Kansas",
+          "Kansas State",
+          "TCU",
+          "Texas Tech"
+        ]
+      }
     };
   }
 
