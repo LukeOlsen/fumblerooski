@@ -3,16 +3,39 @@ import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ConferenceOne from "./Conference";
 import { fetchConferenceData } from "../../actions/actionsAPI";
+import { setTeam } from "../../actions/index";
+import Team from "../Teams/Team";
 
 const mapDispatchToProps = dispatch => {
   return {
-    // setTeam: team => dispatch(setTeam(team)),
+    setTeam: team => dispatch(setTeam(team)),
     fetchConferenceData: conference => dispatch(fetchConferenceData(conference))
   };
 };
 
 const mapStateToProps = state => {
   return {};
+};
+
+const RenderTeams = props => {
+  const teamsList = props.props;
+  console.log(props.props.length > 0);
+  if (teamsList.length > 0) {
+    return (
+      <div className="flex flex-row justify-center flex-wrap">
+        {teamsList.map(team => (
+          <div onClick={() => props.setTeam(team)} key={team} className="m-8">
+            <Link className="Link-style" to={`/team/${team}`}>
+              {team}
+            </Link>
+          </div>
+        ))}
+        <Route path={`/team/:teamName`} render={props => <Team {...props} />} />
+      </div>
+    );
+  } else {
+    return <span></span>;
+  }
 };
 
 class Conferences extends Component {
@@ -102,21 +125,27 @@ class Conferences extends Component {
           "TCU",
           "Texas Tech"
         ]
-      }
+      },
+      currentConference: []
     };
+    this.setConference = this.setConference.bind(this);
   }
 
   componentDidMount() {}
+
+  setConference(conf) {
+    this.setState({ currentConference: this.state.conferenceTeams[conf] });
+  }
 
   render() {
     return (
       <div className="App-body flex-grow text-center m-auto max-h-full overflow-y-scroll">
         <h1 className="mb-8 text-6xl">Conferences</h1>
         <div className="flex flex-row justify-center">
-          {this.state.conferences.map((conference, id) => {
+          {this.state.conferencesApi.map((conference, id) => {
             return (
               <div
-                onClick={() => this.props.fetchConferenceData(conference[1])}
+                onClick={() => this.setConference(conference[0])}
                 className="m-8"
                 key={id + conference[0]}
               >
@@ -130,6 +159,10 @@ class Conferences extends Component {
             );
           })}
         </div>
+        <RenderTeams
+          setTeam={this.props.setTeam}
+          props={this.state.currentConference}
+        />
 
         <Route
           path={`${this.props.match.path}/:conferenceName`}
