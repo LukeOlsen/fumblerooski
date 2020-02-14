@@ -26,7 +26,7 @@ const mapStateToProps = state => {
 const RecruitRender = props => {
   if (props.recruits.length > 0) {
     return (
-      <div className="flex flex-col content-center justify-end text-left">
+      <div className="flex flex-col content-center justify-end text-left App-body flex-grow text-center m-auto max-h-full overflow-y-scroll">
         {props.recruits.map((recruit, index) => {
           return (
             <RecruitProfile

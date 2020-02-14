@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ConferenceOne from "./Conference";
 import { fetchConferenceData } from "../../actions/actionsAPI";
 import { setTeam } from "../../actions/index";
 import Team from "../Teams/Team";
@@ -19,7 +18,6 @@ const mapStateToProps = state => {
 
 const RenderTeams = props => {
   const teamsList = props.props;
-  console.log(props.props.length > 0);
   if (teamsList.length > 0) {
     return (
       <div className="flex flex-row justify-center flex-wrap">
@@ -46,9 +44,9 @@ class Conferences extends Component {
       conferencesApi: [
         ["SEC", "SEC"],
         ["ACC", "ACC"],
-        ["Pac-12", "PAC"],
-        ["Big-10", "B1G"],
-        ["Big-12", "B12"]
+        ["Pac-12", "Pac12"],
+        ["Big-10", "Big10"],
+        ["Big-12", "Big12"]
       ],
       conferenceTeams: {
         SEC: [
@@ -145,7 +143,7 @@ class Conferences extends Component {
           {this.state.conferencesApi.map((conference, id) => {
             return (
               <div
-                onClick={() => this.setConference(conference[0])}
+                onClick={() => this.setConference(conference[1])}
                 className="m-8"
                 key={id + conference[0]}
               >
@@ -164,10 +162,7 @@ class Conferences extends Component {
           props={this.state.currentConference}
         />
 
-        <Route
-          path={`${this.props.match.path}/:conferenceName`}
-          component={ConferenceOne}
-        />
+        <Route path={`${this.props.match.path}/:conferenceName`} />
       </div>
     );
   }
