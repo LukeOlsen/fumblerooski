@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="">
+    <div className="App-body flex-grow text-center m-auto max-h-full overflow-y-scroll">
       <h1 className="text-6xl mb-4">Welcome to Fumblerooski</h1>
       <div className="text-left">
         <h2 className="mb-4">The world's only college football app</h2>

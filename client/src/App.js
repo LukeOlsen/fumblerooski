@@ -14,14 +14,12 @@ function App() {
     <Router>
       <div className="App flex">
         <Navbar className="w-3" />
-        <div className="App-header flex-grow text-center m-auto max-h-full overflow-y-scroll">
-          <Route exact path="/" exact component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route path="/conferences" component={Conferences} />
-          <Route path="/team/:teamName" component={Team} />
-          <Route path="/rankings" component={Rankings} />
-          <Route path="/recruits" component={Recruits} />
-        </div>
+        <Route exact path="/" exact component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route path="/conferences" component={Conferences} />
+        <Route path="/team/:teamName" component={Team} />
+        <Route path="/rankings" component={Rankings} />
+        <Route path="/recruits" component={Recruits} />
       </div>
     </Router>
   );

@@ -34,9 +34,9 @@ class Conferences extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App-body flex-grow text-center m-auto max-h-full overflow-y-scroll">
         <h1 className="mb-8 text-6xl">Conferences</h1>
-        <div className="flex flex-row justify-center max-w-4xl">
+        <div className="flex flex-row justify-center">
           {this.state.conferences.map((conference, id) => {
             return (
               <div

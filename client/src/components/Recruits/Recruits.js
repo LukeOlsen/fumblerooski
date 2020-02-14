@@ -71,7 +71,7 @@ class Recruits extends Component {
 
   render() {
     return (
-      <div className="h-screen">
+      <div className="App-body flex-grow text-center m-auto max-h-full overflow-y-scroll">
         <h1>This is Recruits!</h1>
         <form onSubmit={this.handleSubmit}>
           <select
