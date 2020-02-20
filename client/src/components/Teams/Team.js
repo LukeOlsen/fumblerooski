@@ -31,7 +31,7 @@ class Team extends Component {
   }
 
   componentDidMount() {
-    this.props.getTeamData(this.props.team);
+    this.props.getTeamData(this.props.match.params.teamName);
   }
 
   render() {
