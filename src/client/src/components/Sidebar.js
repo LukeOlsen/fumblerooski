@@ -9,30 +9,30 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="navbar text-center">
-        <div className="item-nav-container top-item">
+      <div className="navbar bg-gray-500 text-center border-gray-600 border-r-2">
+        <div className="item-nav-container top-item bg-indigo-500 hover:bg-indigo-700 cursor-pointer">
           <div>
             <Link className="w-full h-full" to="/">
               Home
             </Link>
           </div>
         </div>
-        <div className="item-nav-container">
+        <div className="item-nav-container bg-indigo-500 hover:bg-indigo-700 cursor-pointer">
           <div>
             <Link to="/about">About</Link>
           </div>
         </div>
-        <div className="item-nav-container">
+        <div className="item-nav-container bg-indigo-500 hover:bg-indigo-700 cursor-pointer">
           <div>
             <Link to="/conferences">Conferences</Link>
           </div>
         </div>
-        <div className="item-nav-container">
+        <div className="item-nav-container bg-indigo-500 hover:bg-indigo-700 cursor-pointer">
           <div>
             <Link to="/rankings">Rankings</Link>
           </div>
         </div>
-        <div className="item-nav-container">
+        <div className="item-nav-container bg-indigo-500 hover:bg-indigo-700 cursor-pointer">
           <div>
             <Link to="/recruits">Recruits</Link>
           </div>
