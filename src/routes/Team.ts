@@ -1,9 +1,22 @@
-import * as express from "express";
+import { Router } from "express";
+import SchoolsFBS from "../models/Team";
 
-export const team = express.Router();
+export const team = Router();
+
+team.get("/", (req, res) => {
+  SchoolsFBS.findAll().then(teams => {
+    res.send(teams);
+  });
+});
 
 team.get("/:team", async (req, res, next) => {
-  res.send("teams hit");
+  SchoolsFBS.findAll({
+    where: {
+      school: req.params.team
+    }
+  }).then(team => {
+    res.send(team);
+  });
 });
 
 // var express = require("express");
