@@ -7,6 +7,7 @@ import {
   DataType
 } from "sequelize-typescript";
 
+@Table
 export default class RecruitTeamTalent extends Model<RecruitTeamTalent> {
   @Column
   year: number;
