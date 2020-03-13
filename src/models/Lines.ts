@@ -6,7 +6,6 @@ import {
   PrimaryKey,
   DataType
 } from "sequelize-typescript";
-import { Json } from "sequelize/types/lib/utils";
 
 @Table
 export default class Lines extends Model<Lines> {
