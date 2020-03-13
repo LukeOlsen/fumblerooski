@@ -9,6 +9,10 @@ import {
 
 @Table
 export default class Recruits extends Model<Recruits> {
+  @PrimaryKey
+  @Column
+  id: number;
+
   @Column
   recruitType: string;
 
@@ -25,7 +29,7 @@ export default class Recruits extends Model<Recruits> {
   school: string;
 
   @Column
-  comittedTo: string;
+  committedTo: string;
 
   @Column
   position: string;
@@ -46,8 +50,14 @@ export default class Recruits extends Model<Recruits> {
   city: string;
 
   @Column
-  stateProvidence: string;
+  stateProvince: string;
 
   @Column
   country: string;
+
+  @Column
+  createdAt: Date;
+
+  @Column
+  updatedAt: Date;
 }
