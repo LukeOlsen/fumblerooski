@@ -1,6 +1,7 @@
 import { Router } from "express";
 import SchoolsFBS from "../models/Team";
 import Recruits from "../models/Recruits";
+import Talents from "../models/Talents";
 
 export const team = Router();
 
@@ -19,13 +20,19 @@ team.get("/:team", async (req, res, next) => {
 
   const recruitData = Recruits.findAll({
     where: {
-      committedTo: req.params.team
+      committedTo: req.params.team,
+      year: 2019
     }
   });
 
-  Promise.all([schoolData, recruitData])
+  const talentData = Talents.findAll({
+    where: {
+      school: req.params.team
+    }
+  });
+
+  Promise.all([schoolData, recruitData, talentData])
     .then(result => {
-      console.log(result);
       res.send(result);
     })
     .catch(err => {

@@ -4,13 +4,16 @@ import {
   SET_TEAM_DATA
 } from "../constants/action-types";
 import teamsList from "../data/teamsList";
+import initialTeams from "../data/defaultTeams";
 
-export default function teamReducer(state = { teamsList: teamsList }, action) {
+export default function teamReducer(state = initialTeams, action) {
   if (action.type === SET_TEAM) {
     console.log(action.payload);
     return Object.assign({}, state, {
       ...state,
-      team: action.payload
+      teamInfo: action.payload[0],
+      latestRecruits: action.payload[1],
+      latestTalentRating: action.payload[2]
     });
   } else if (action.type === SET_CONFERENCE) {
     return Object.assign({}, state, {
@@ -21,7 +24,9 @@ export default function teamReducer(state = { teamsList: teamsList }, action) {
     console.log(action.payload);
     return Object.assign({}, state, {
       ...state,
-      teamData: action.payload
+      teamInfo: action.payload[0],
+      latestRecruits: action.payload[1],
+      latestTalentRating: action.payload[2]
     });
   }
   return state;

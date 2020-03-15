@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { getTeamData } from "../../actions/Teams/TeamsAPI";
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     team: state.teamReducer.team,
     data: state.teamReducer.data,
-    teamData: state.teamReducer.teamData
+    teamInfo: state.teamReducer.teamInfo,
+    recruits: state.teamReducer.latestRecruits,
+    talent: state.teamReducer.latestTalentRating
   };
 };
 
@@ -18,6 +21,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const RenderLogo = props => {
+  console.log(props);
   if (props) {
     return (
       <div className="w-full md:flex-1 self-center">
@@ -49,23 +53,22 @@ class Team extends Component {
       <div className="App-body p-2 flex-grow text-center max-h-full overflow-y-scroll flex-row">
         <h2 className="text-6xl mt-8">
           {this.props.match.params.teamName}{" "}
-          {this.props.teamData ? this.props.teamData.team[0].mascot : ""}
+          {this.props.teamInfo[0] ? this.props.teamInfo[0].mascot : ""}
         </h2>
         <div className="flex flex-wrap justify-center items-center">
-          {this.props.teamData.team ? (
-            <RenderLogo {...this.props.teamData.team[0]} />
+          {this.props.teamInfo[0] ? (
+            <RenderLogo {...this.props.teamInfo[0]} />
           ) : (
             ""
           )}
           <div className="w-full md:flex-1 text-4xl self-center">
-            {this.props.teamData.team
-              ? this.props.teamData.team[0].conference
-              : ""}
+            {this.props.teamInfo[0] ? this.props.teamInfo[0].conference : ""}
           </div>
           <div className="w-full md:flex-1 text-4xl self-center">
-            {this.props.teamData.team
-              ? this.props.teamData.team[0].division
-              : ""}
+            {this.props.teamInfo[0] ? this.props.teamInfo[0].division : ""}
+          </div>
+          <div className="w-full md:flex-1 text-4xl self-center">
+            {this.props.talent[0] ? this.props.talent[0].talent : ""}
           </div>
         </div>
         <div className="flex flex-wrap">
