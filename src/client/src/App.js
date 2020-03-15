@@ -12,7 +12,7 @@ import Recruits from "./components/Recruits/Recruits";
 function App() {
   return (
     <Router>
-      <div className="App flex bg-gray-200">
+      <div className="App flex bg-gray-900 text-gray-300">
         <Navbar className="w-3" />
         <Route exact path="/" exact component={Home} />
         <Route exact path="/about" component={About} />
