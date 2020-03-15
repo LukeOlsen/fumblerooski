@@ -10,7 +10,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="h-screen bg-gray-700 pr-10 pl-2">
-        <div className="top-item p-1 text-indigo-400 hover:text-indigo-200 cursor-pointer ">
+        <div className="p-1 pt-6 text-indigo-400 hover:text-indigo-200 cursor-pointer ">
           <div>
             <Link className="w-full h-full" to="/">
               Home

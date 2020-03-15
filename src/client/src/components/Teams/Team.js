@@ -72,8 +72,8 @@ class Team extends Component {
           </div>
         </div>
         <div className="flex flex-wrap">
-          <div className="bg-gray-700 rounded border-black h-64 w-full md:flex-1 m-2 shadow-lg"></div>
-          <div className="bg-gray-700 rounded border-black h-64 w-full md:flex-1 m-2 shadow-lg"></div>
+          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
+          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
         </div>
       </div>
     );
