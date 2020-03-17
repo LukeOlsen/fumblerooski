@@ -12,8 +12,8 @@ import Recruits from "./components/Recruits/Recruits";
 function App() {
   return (
     <Router>
-      <div className="App flex bg-gray-900 text-gray-300">
-        <Navbar className="w-3" />
+      <Navbar className="w-3" />
+      <div className="pl-32 flex bg-gray-900 text-gray-300">
         <Route exact path="/" exact component={Home} />
         <Route exact path="/about" component={About} />
         <Route path="/conferences" component={Conferences} />
