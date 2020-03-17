@@ -137,7 +137,7 @@ class Conferences extends Component {
 
   render() {
     return (
-      <div className="text-xl px-32 flex-grow text-center max-h-full overflow-y-scroll">
+      <div className="h-screen text-xl px-32 flex-grow text-center max-h-full overflow-y-scroll">
         <h1 className="mb-8 text-6xl">Conferences</h1>
         <div className="flex flex-row justify-center">
           {this.state.conferencesApi.map((conference, id) => {

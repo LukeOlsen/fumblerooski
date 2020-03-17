@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
 const RecruitsTable = props => {
+  //   console.log(props.recruits[0]);
   if (props.recruits[0].length > 0) {
     return (
-      <div className="text-center">
-        <table className="m-auto w-11/12">
+      <div className="text-center pb-2">
+        <table className="m-auto mb-2 w-11/12">
           <thead>
             <tr>
               <th>Ranking</th>
