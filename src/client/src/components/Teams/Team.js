@@ -21,6 +21,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+let currentTeam = "";
+
 const RenderLogo = props => {
   console.log(props);
   if (props) {
@@ -41,6 +43,14 @@ class Team extends Component {
 
   componentDidMount() {
     this.props.getTeamData(this.props.match.params.teamName);
+    currentTeam = this.props.match.params.teamName;
+  }
+
+  componentDidUpdate() {
+    if (this.props.match.params.teamName != currentTeam) {
+      this.props.getTeamData(this.props.match.params.teamName);
+      currentTeam = this.props.match.params.teamName;
+    }
   }
 
   render() {
