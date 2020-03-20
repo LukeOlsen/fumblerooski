@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Navbar.css";
 
 const mapDispatchToProps = dispatch => {
@@ -35,6 +37,8 @@ class Sidebar extends Component {
   viewTeams(conference) {
     if (conference === "SEC") {
       this.setState({ secVisible: !this.state.secVisible });
+    } else if (conference === "ACC") {
+      this.setState({ accVisible: !this.state.accVisible });
     }
   }
 
@@ -55,10 +59,16 @@ class Sidebar extends Component {
         </div>
         <div className="p-1 cursor-pointer">
           <div
-            className="text-indigo-400 text-shadow hover:text-indigo-200"
+            className="text-indigo-400 text-shadow hover:text-indigo-200 flex justify-between"
             onClick={this.setConferenceVisible}
           >
-            Conferences <i class="fas fa-angle-down"></i>
+            <div>Conferences</div>
+            <div className="mr-2">
+              <FontAwesomeIcon
+                icon={faAngleDown}
+                rotation={`${this.state.conferenceVisibile ? 180 : 0}`}
+              />
+            </div>
           </div>
           <div
             className={`pl-3 ${
@@ -68,10 +78,16 @@ class Sidebar extends Component {
             <ul>
               <li>
                 <div
-                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200"
+                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200 flex"
                   onClick={() => this.viewTeams("SEC")}
                 >
-                  SEC
+                  <div>SEC</div>
+                  <div className="ml-4">
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      rotation={`${this.state.secVisible ? 180 : 0}`}
+                    />
+                  </div>
                 </div>
                 <ul
                   className={`p-1 pl-2 ${
@@ -109,7 +125,7 @@ class Sidebar extends Component {
                     <Link to="/team/Vanderbilt">Vanderbilt</Link>
                   </li>
                   <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
-                    <Link to="/team/texas%20A&M">Texas A&M</Link>
+                    <Link to="/team/Texas%20A&M">Texas A&M</Link>
                   </li>
                   <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
                     <Link to="/team/Mississippi%20State"></Link>Mississippi
@@ -123,9 +139,68 @@ class Sidebar extends Component {
                   </li>
                 </ul>
               </li>
-              <li className="p-1 text-indigo-400 text-shadow hover:text-indigo-200">
-                <Link to="/conferences/ACC">ACC</Link>
+              <li>
+                <div
+                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200 flex"
+                  onClick={() => this.viewTeams("ACC")}
+                >
+                  <div>ACC</div>
+                  <div className="ml-4">
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      rotation={`${this.state.accVisible ? 180 : 0}`}
+                    />
+                  </div>
+                </div>
               </li>
+              <ul
+                className={`p-1 pl-2 ${
+                  this.state.accVisible ? "visible" : "hidden"
+                }`}
+              >
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Florida%20State">Florida State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Georgia%20Tech">Georgia Tech</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Louisville">Louisville</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Boston%20College">Boston College</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/NC%20State">NC State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Duke">Duke</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/North%20Carolina">North Carolina</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Wake%20Forest">Wake Forest</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Syracuse">Syracuse</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Pittsburgh">Pittsburgh</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Clemson">Clemson</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Virginia">Virginia</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Virginia%20Tech">Virginia Tech</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Miami">Miami</Link>
+                </li>
+              </ul>
               <li className="p-1 text-indigo-400 text-shadow hover:text-indigo-200">
                 <Link to="/conferences/Big10">Big-10</Link>
               </li>
