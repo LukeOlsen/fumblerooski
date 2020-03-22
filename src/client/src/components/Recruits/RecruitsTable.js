@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const RecruitsTable = props => {
   //   console.log(props.recruits[0]);
-  if (props.recruits[0].length > 0) {
+  if (props.recruits[0].length > 1) {
     return (
       <div className="text-center pb-2">
         <table className="m-auto mb-2 w-11/12">

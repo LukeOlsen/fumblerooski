@@ -39,12 +39,18 @@ class Sidebar extends Component {
       this.setState({ secVisible: !this.state.secVisible });
     } else if (conference === "ACC") {
       this.setState({ accVisible: !this.state.accVisible });
+    } else if (conference === "B10") {
+      this.setState({ big10Visible: !this.state.big10Visible });
+    } else if (conference === "B12") {
+      this.setState({ big12Visible: !this.state.big12Visible });
+    } else if (conference === "P12") {
+      this.setState({ pac12Visible: !this.state.pac12Visible });
     }
   }
 
   render() {
     return (
-      <div className="h-screen bg-gray-700 w-48 fixed">
+      <div className="h-screen bg-gray-700 w-48 fixed overflow-auto">
         <div className="p-1 pt-6 text-indigo-400 hover:text-indigo-200 text-shadow cursor-pointer ">
           <div>
             <Link className="w-full h-full" to="/">
@@ -201,15 +207,174 @@ class Sidebar extends Component {
                   <Link to="/team/Miami">Miami</Link>
                 </li>
               </ul>
-              <li className="p-1 text-indigo-400 text-shadow hover:text-indigo-200">
-                <Link to="/conferences/Big10">Big-10</Link>
+              <li>
+                <div
+                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200 flex"
+                  onClick={() => this.viewTeams("B10")}
+                >
+                  <div>Big-10</div>
+                  <div className="ml-4">
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      rotation={`${this.state.big10Visible ? 180 : ""}`}
+                    />
+                  </div>
+                </div>
               </li>
-              <li className="p-1 text-indigo-400 text-shadow hover:text-indigo-200">
-                <Link to="/conferences/Big12">Big-12</Link>
+              <ul
+                className={`p-1 pl-2 ${
+                  this.state.big10Visible ? "visible" : "hidden"
+                }`}
+              >
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Northwestern">Northwestern</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Indiana">Indiana</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Maryland">Maryland</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Michigan%20State">Michigan State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Michigan">Michigan</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Minnesota">Minnesota</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Nebraska">Nebraska</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Rutgers">Rutgers</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Ohio%20State">Ohio State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Penn%20State">Penn State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Wisconsin">Wisconsin</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Illinois">Illinois</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Iowa">Iowa</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Purdue">Purdue</Link>
+                </li>
+              </ul>
+              <li>
+                <div
+                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200 flex"
+                  onClick={() => this.viewTeams("B12")}
+                >
+                  <div>Big-12</div>
+                  <div className="ml-4">
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      rotation={`${this.state.big12Visible ? 180 : ""}`}
+                    />
+                  </div>
+                </div>
               </li>
-              <li className="p-1 text-indigo-400 text-shadow hover:text-indigo-200">
-                <Link to="/conferences/Pac12">Pac-12</Link>
+              <ul
+                className={`p-1 pl-2 ${
+                  this.state.big12Visible ? "visible" : "hidden"
+                }`}
+              >
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Iowa%20State">Iowa State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Oklahoma%20State">Oklahoma State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Oklahoma">Oklahoma</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Baylor">Baylor</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Texas">Texas</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/West%20Virginia">West Virginia</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Kansas">Kansas</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Kansas%20State">Kansas State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/TCU">TCU</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Texas%20Tech">Texas Tech</Link>
+                </li>
+              </ul>
+              <li>
+                <div
+                  className="p-1 text-indigo-400 text-shadow hover:text-indigo-200 flex"
+                  onClick={() => this.viewTeams("P12")}
+                >
+                  <div>Pac-12</div>
+                  <div className="ml-4">
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      rotation={`${this.state.pac12Visible ? 180 : ""}`}
+                    />
+                  </div>
+                </div>
               </li>
+              <ul
+                className={`p-1 pl-2 ${
+                  this.state.pac12Visible ? "visible" : "hidden"
+                }`}
+              >
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Arizona%20State">Arizona State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Arizona">Arizona</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Stanford">Stanford</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/California">California</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/UCLA">UCLA</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/USC">USC</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Colorado">Colorado</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Oregon%20State">Oregon State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Utah">Utah</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Washington">Washington</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Washington%20State">Washington State</Link>
+                </li>
+                <li className="my-1 text-indigo-400 text-shadow hover:text-indigo-200">
+                  <Link to="/team/Oregon">Oregon</Link>
+                </li>
+              </ul>
             </ul>
           </div>
         </div>
