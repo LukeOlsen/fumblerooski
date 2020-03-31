@@ -8,6 +8,7 @@ import Conferences from "./components/Conferences/Conferences";
 import "./styles/App.css";
 import Rankings from "./components/Rankings/Rankings";
 import Recruits from "./components/Recruits/Recruits";
+import Games from "./components/Games/Games";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/team/:teamName" component={Team} />
           <Route path="/rankings" component={Rankings} />
           <Route path="/recruits" component={Recruits} />
+          <Route path="/games" component={Games} />
         </div>
       </div>
     </Router>

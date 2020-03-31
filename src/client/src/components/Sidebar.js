@@ -388,6 +388,11 @@ class Sidebar extends Component {
             <Link to="/recruits">Recruits</Link>
           </div>
         </div>
+        <div className="p-1 text-indigo-400 hover:text-indigo-200 text-shadow cursor-pointer">
+          <div>
+            <Link to="/games">Games</Link>
+          </div>
+        </div>
       </div>
     );
   }
