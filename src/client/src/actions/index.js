@@ -5,7 +5,8 @@ import {
   SET_RANKINGS,
   SET_RECRUITS,
   SET_TEAM_DATA,
-  GET_GAME_HISTORY
+  GET_GAME_HISTORY,
+  GET_MATCHUP_HISTORY
 } from "../constants/action-types";
 
 export function setTeam(payload) {
@@ -34,4 +35,8 @@ export function setTeamData(payload) {
 
 export function getGameHistory(payload) {
   return { type: GET_GAME_HISTORY, payload };
+}
+
+export function getMatchups(payload) {
+  return { type: GET_MATCHUP_HISTORY, payload };
 }

@@ -5,3 +5,4 @@ export const SET_RANKINGS = "SET_RANKINGS";
 export const SET_RECRUITS = "SET_RECRUITS";
 export const SET_TEAM_DATA = "SET_TEAM_DATA";
 export const GET_GAME_HISTORY = "GET_GAME_HISTORY";
+export const GET_MATCHUP_HISTORY = "GET_MATCHUP_HISTORY";

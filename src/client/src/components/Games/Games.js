@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    teamsList: state.teamReducer.teamsList
+    gamesHistory: state.gameReducer.gamesHistory
   };
 };
 
