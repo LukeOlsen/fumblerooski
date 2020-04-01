@@ -41,21 +41,18 @@ class Games extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     if (
-      (this.state.firstTeam !== null) |
-      ("Select" & (this.state.secondTeam == null)) |
-      "Select"
+      this.state.firstTeam !== "Select" &&
+      this.state.secondTeam === "Select"
     ) {
-      console.log("get all");
       this.props.getAllGames(this.state.firstTeam);
     } else if (
-      (this.state.firstTeam !== null) |
-      ("Select" & (this.state.secondTeam !== null)) |
-      "Select"
+      this.state.firstTeam !== "Select" &&
+      this.state.secondTeam !== "Select"
     ) {
       this.props.getMatchupHistory(this.state.firstTeam, this.state.secondTeam);
     }
-    event.preventDefault();
   }
 
   render() {
