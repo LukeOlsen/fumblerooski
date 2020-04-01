@@ -6,6 +6,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@nivo/geo": "^0.61.1",
+    "@nivo/pie": "^0.61.1",
     "axios": "^0.19.2",
     "eslint-utils": "^1.4.3",
     "lodash": "^4.17.15",
