@@ -11,7 +11,7 @@ games.get("/history/:team", async (req, res, next) => {
     },
     order: [
       ["season", "DESC"],
-      ["WEEK", "DESC"]
+      ["WEEK", "ASC"]
     ]
   })
     .then(g => {

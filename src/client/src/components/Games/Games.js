@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { getAllGames, getMatchupHistory } from "../../actions/Games/GamesAPI";
+import GameModule from "./GameModule";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -14,7 +15,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    gamesHistory: state.gameReducer.gamesHistory
+    gameHistory: state.gamesReducer.gameHistory,
+    matchupHistory: state.gamesReducer.matchupHistory,
+    teamsList: state.teamReducer.teamsList
   };
 };
 
@@ -55,9 +58,13 @@ class Games extends Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log(this.props);
+  }
+
   render() {
     return (
-      <div className="p-2 pl-10 flex-grow max-h-full overflow-y-scroll flex-row">
+      <div className="p-2 pl-10 flex-grow max-h-full overflow-y-scroll flex-row h-screen">
         <div>
           <h1>Welcome to the match ups</h1>
         </div>
@@ -107,6 +114,16 @@ class Games extends Component {
         </div>
         <div>{this.state.firstTeam}</div>
         <div>{this.state.secondTeam}</div>
+        {this.props.gameHistory.length > 1
+          ? this.props.gameHistory.map(game => {
+              return <GameModule {...game} />;
+            })
+          : null}
+        {this.props.matchupHistory.length > 1
+          ? this.props.matchupHistory.map(game => {
+              return <GameModule {...game} />;
+            })
+          : null}
       </div>
     );
   }
