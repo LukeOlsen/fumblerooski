@@ -116,12 +116,12 @@ class Games extends Component {
         <div>{this.state.secondTeam}</div>
         {this.props.gameHistory.length > 1
           ? this.props.gameHistory.map(game => {
-              return <GameModule {...game} />;
+              return <GameModule key={game.id} {...game} />;
             })
           : null}
         {this.props.matchupHistory.length > 1
           ? this.props.matchupHistory.map(game => {
-              return <GameModule {...game} />;
+              return <GameModule key={game.id} {...game} />;
             })
           : null}
       </div>
