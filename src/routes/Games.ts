@@ -25,17 +25,15 @@ games.get("/history/:team", async (req, res, next) => {
 });
 
 games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
+  const t1 = req.params.myTeam;
+  const t2 = req.params.yourTeam;
   Games.findAll({
     where: {
-      [Op.or]: {
-        [Op.and]: [
-          { home_team: req.params.myTeam },
-          { away_team: req.params.yourTeam }
-        ],
-        [Op.and]: [
-          { home_team: req.params.yourTeam },
-          { away_team: req.params.myTeam }
-        ]
+      home_team: {
+        [Op.or]: [t1, t2]
+      },
+      away_team: {
+        [Op.or]: [t1, t2]
       }
     }
   })
