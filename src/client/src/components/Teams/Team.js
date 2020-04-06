@@ -84,17 +84,13 @@ class Team extends Component {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center items-center">
-          {/* {this.props.teamInfo[0] ? (
-            <RenderLogo {...this.props.teamInfo[0]} />
-          ) : (
-            ""
-          )} */}
-        </div>
         <div className="flex flex-wrap">
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
         </div>
+        {/* <div className="h-64">
+          <RecruitGeoMap />
+        </div> */}
         <div className="bg-gray-700 rounded m-2">
           <RecruitsTable recruits={[this.props.recruits]} />
         </div>

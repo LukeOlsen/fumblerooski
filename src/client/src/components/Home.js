@@ -55,12 +55,12 @@ class Home extends Component {
         </div>
         <div className="h-screen">
           <div className="md:flex w-full m-8 align-middle justify-center">
-            <div className="w-10/12 h-20 my-4 md:w-1/4 bg-gray-700"></div>
-            <div className="w-10/12 h-20 my-4 md:w-1/4 bg-gray-700"></div>
+            <div className="w-10/12 h-20 my-4 lg:mx-10 md:w-1/4 bg-gray-700"></div>
+            <div className="w-10/12 h-20 my-4 lg:mx-10 md:w-1/4 bg-gray-700"></div>
           </div>
           <div className="md:flex w-full m-8 align-middle justify-center">
-            <div className="w-10/12 h-20 my-4 md:w-1/4 bg-gray-700"></div>
-            <div className="w-10/12 h-20 my-4 md:w-1/4 bg-gray-700"></div>
+            <div className="w-10/12 h-20 my-4 lg:mx-10 md:w-1/4 bg-gray-700"></div>
+            <div className="w-10/12 h-20 my-4 lg:mx-10 md:w-1/4 bg-gray-700"></div>
           </div>
         </div>
       </div>
