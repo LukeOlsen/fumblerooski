@@ -4,8 +4,11 @@ import {
   Model,
   HasMany,
   PrimaryKey,
-  DataType
+  DataType,
+  BelongsTo,
+  HasOne,
 } from "sequelize-typescript";
+import Games from "./Games";
 
 @Table
 export default class SchoolsFBS extends Model<SchoolsFBS> {
@@ -48,4 +51,10 @@ export default class SchoolsFBS extends Model<SchoolsFBS> {
 
   @Column
   logos_2: string;
+
+  @HasMany(() => Games, "home_id")
+  homeGames: Games[];
+
+  @HasMany(() => Games, "away_id")
+  awayGames: Games[];
 }

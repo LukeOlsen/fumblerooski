@@ -4,8 +4,12 @@ import {
   Model,
   HasMany,
   PrimaryKey,
-  DataType
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  BelongsToMany,
 } from "sequelize-typescript";
+import SchoolsFBS from "./Team";
 
 @Table
 export default class Games extends Model<Games> {
@@ -43,6 +47,7 @@ export default class Games extends Model<Games> {
   @Column
   venue: string;
 
+  @ForeignKey(() => SchoolsFBS)
   @Column
   home_id: number;
 
@@ -61,6 +66,7 @@ export default class Games extends Model<Games> {
   @Column
   home_post_win_prob: number;
 
+  @ForeignKey(() => SchoolsFBS)
   @Column
   away_id: number;
 
@@ -81,4 +87,10 @@ export default class Games extends Model<Games> {
 
   @Column
   excitement_index: number;
+
+  @BelongsTo(() => SchoolsFBS, "home_id")
+  homeTeam: SchoolsFBS[];
+
+  @BelongsTo(() => SchoolsFBS, "away_id")
+  awayTeam: SchoolsFBS[];
 }
