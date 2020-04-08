@@ -1,14 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+const mapStateToProps = (state) => {
+  return {
+    teamsList: state.teamReducer.teamsList,
+  };
+};
 
 class GameModule extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
     };
+    console.log(props);
   }
 
   render() {
@@ -22,10 +34,12 @@ class GameModule extends Component {
         </div>
         <div className="mx-2">Season: {this.props.season}</div>
         <div className="mx-2">Week: {this.props.week}</div>
+        <img className="h-10" src={this.props.homeTeam.logos_1} />
         <div className="mx-2">{this.props.home_team}</div>
         <div className="mx-2">{this.props.home_points}</div>
         <div className="mx-2"> - </div>
         <div className="mx-2">{this.props.away_points}</div>
+        <img className="h-10" src={this.props.awayTeam.logos_1} />
         <div className="mx-2">{this.props.away_team}</div>
         {this.state.open ? <div>show</div> : <div>don't show</div>}
       </div>
@@ -33,4 +47,4 @@ class GameModule extends Component {
   }
 }
 
-export default GameModule;
+export default connect(mapStateToProps, mapDispatchToProps)(GameModule);
