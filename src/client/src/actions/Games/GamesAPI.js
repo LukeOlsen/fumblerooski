@@ -16,3 +16,11 @@ export function getMatchupHistory(pl1, pl2) {
     });
   };
 }
+
+export function getAdvancedBoxedScores(gameID) {
+  return dispatchEvent => {
+    axios.get(`/api/games/ABS/${gameID}`).then(res => {
+      console.log(res);
+    });
+  };
+}

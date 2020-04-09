@@ -7,7 +7,7 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
-  BelongsToMany,
+  BelongsToMany
 } from "sequelize-typescript";
 import SchoolsFBS from "./Team";
 

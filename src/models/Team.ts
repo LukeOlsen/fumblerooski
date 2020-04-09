@@ -7,6 +7,7 @@ import {
   DataType,
   BelongsTo,
   HasOne,
+  ForeignKey
 } from "sequelize-typescript";
 import Games from "./Games";
 

@@ -2,24 +2,25 @@ import * as express from "express";
 import { Sequelize, Op } from "sequelize";
 import Games from "../models/Games";
 import SchoolsFBS from "../models/Team";
+import AdvancedBoxedScores from "../models/AdvancedBoxScores";
 
 export const games = express.Router();
 
 games.get("/history/:team", async (req, res, next) => {
   Games.findAll({
     where: {
-      [Op.or]: [{ home_team: req.params.team }, { away_team: req.params.team }],
+      [Op.or]: [{ home_team: req.params.team }, { away_team: req.params.team }]
     },
     order: [
       ["season", "DESC"],
-      ["WEEK", "ASC"],
-    ],
+      ["WEEK", "ASC"]
+    ]
   })
-    .then((g) => {
+    .then(g => {
       console.log(g);
       res.send(g);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.send(err);
     });
@@ -32,11 +33,11 @@ games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
   Games.findAll({
     where: {
       home_team: {
-        [Op.or]: [t1, t2],
+        [Op.or]: [t1, t2]
       },
       away_team: {
-        [Op.or]: [t1, t2],
-      },
+        [Op.or]: [t1, t2]
+      }
     },
     order: [["season", "DESC"]],
     include: [
@@ -46,9 +47,9 @@ games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
         attributes: ["logos_1"],
         where: {
           school: {
-            [Op.or]: [t1, t2],
-          },
-        },
+            [Op.or]: [t1, t2]
+          }
+        }
       },
       {
         model: SchoolsFBS,
@@ -56,17 +57,32 @@ games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
         attributes: ["logos_1"],
         where: {
           school: {
-            [Op.or]: [t1, t2],
-          },
-        },
-      },
-    ],
+            [Op.or]: [t1, t2]
+          }
+        }
+      }
+    ]
   })
-    .then((g) => {
+    .then(g => {
       res.send(g);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.send(err);
+    });
+});
+
+games.get("/ABS/:gameId", async (req, res) => {
+  AdvancedBoxedScores.findOne({
+    where: {
+      id: req.params.gameId
+    }
+  })
+    .then(g => {
+      res.send(g);
+    })
+    .catch(err => {
+      res.send(err);
+      console.log(err);
     });
 });

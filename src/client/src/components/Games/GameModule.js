@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { getAdvancedBoxedScores } from "../../actions/Games/GamesAPI";
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
+const mapDispatchToProps = dispatch => {
+  return {
+    getAdvancedBoxedScores: gameId => dispatch(getAdvancedBoxedScores(gameId))
+  };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    teamsList: state.teamReducer.teamsList,
+    teamsList: state.teamReducer.teamsList
   };
 };
 
@@ -18,15 +21,22 @@ class GameModule extends Component {
     super(props);
 
     this.state = {
-      open: false,
+      open: false
     };
     console.log(props);
+
+    this.handleExpand = this.handleExpand.bind(this);
+  }
+
+  handleExpand() {
+    this.setState({ open: !this.state.open });
+    this.props.getAdvancedBoxedScores(this.props.id);
   }
 
   render() {
     return (
       <div
-        onClick={() => this.setState({ open: !this.state.open })}
+        onClick={() => this.handleExpand()}
         className="w-full h-10 bg-gray-700 text-indigo-400 rounded my-2 flex items-center"
       >
         <div className="mx-2">

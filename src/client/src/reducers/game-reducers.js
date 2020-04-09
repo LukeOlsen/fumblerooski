@@ -1,6 +1,7 @@
 import {
   GET_GAME_HISTORY,
-  GET_MATCHUP_HISTORY
+  GET_MATCHUP_HISTORY,
+  GET_ABS
 } from "../constants/action-types";
 
 export default function gamesReducer(
@@ -19,6 +20,11 @@ export default function gamesReducer(
       ...state,
       matchupHistory: action.payload,
       gameHistory: []
+    });
+  } else if (action.type === GET_ABS) {
+    return Object.assign({}, state, {
+      ...state,
+      gameAbs: action.payload
     });
   } else {
     return state;
