@@ -3,6 +3,7 @@ import { Sequelize, Op } from "sequelize";
 import Games from "../models/Games";
 import SchoolsFBS from "../models/Team";
 import AdvancedBoxedScores from "../models/AdvancedBoxScores";
+import GameStats from "../models/GameStats";
 
 export const games = express.Router();
 
@@ -73,16 +74,24 @@ games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
 });
 
 games.get("/ABS/:gameId", async (req, res) => {
-  AdvancedBoxedScores.findOne({
+  const advancedScores = AdvancedBoxedScores.findOne({
     where: {
       id: req.params.gameId
     }
-  })
-    .then(g => {
-      res.send(g);
+  });
+
+  const BoxedScores = GameStats.findOne({
+    where: {
+      id: req.params.gameId
+    }
+  });
+
+  Promise.all([advancedScores, BoxedScores])
+    .then(result => {
+      res.send(result);
     })
     .catch(err => {
-      res.send(err);
       console.log(err);
+      res.send(err);
     });
 });
