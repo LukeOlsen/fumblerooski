@@ -1,7 +1,9 @@
 import { Router } from "express";
+import { Op } from "sequelize";
 import SchoolsFBS from "../models/Team";
 import Recruits from "../models/Recruits";
 import Talents from "../models/Talents";
+import Games from "../models/Games";
 
 export const team = Router();
 
@@ -15,7 +17,31 @@ team.get("/:team", async (req, res, next) => {
   const schoolData = SchoolsFBS.findAll({
     where: {
       school: req.params.team
-    }
+    },
+    include: [
+      {
+        model: Games,
+        as: "homeGames",
+        where: {
+          [Op.or]: [
+            { home_team: req.params.team },
+            { away_team: req.params.team }
+          ],
+          season: 2019
+        }
+      },
+      {
+        model: Games,
+        as: "awayGames",
+        where: {
+          [Op.or]: [
+            { home_team: req.params.team },
+            { away_team: req.params.team }
+          ],
+          season: 2019
+        }
+      }
+    ]
   });
 
   const recruitData = Recruits.findAll({
