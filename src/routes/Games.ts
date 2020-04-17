@@ -4,6 +4,7 @@ import Games from "../models/Games";
 import SchoolsFBS from "../models/Team";
 import AdvancedBoxedScores from "../models/AdvancedBoxScores";
 import GameStats from "../models/GameStats";
+import GameDrives from "../models/GameDrives";
 
 export const games = express.Router();
 
@@ -86,7 +87,13 @@ games.get("/ABS/:gameId", async (req, res) => {
     }
   });
 
-  Promise.all([advancedScores, BoxedScores])
+  const drives = GameDrives.findAll({
+    where: {
+      game_id: req.params.gameId
+    }
+  });
+
+  Promise.all([advancedScores, BoxedScores, drives])
     .then(result => {
       res.send(result);
     })
