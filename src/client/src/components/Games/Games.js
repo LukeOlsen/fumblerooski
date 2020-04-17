@@ -112,8 +112,6 @@ class Games extends Component {
             <input className="mx-10" type="submit" value="Submit" />
           </form>
         </div>
-        <div>{this.state.firstTeam}</div>
-        <div>{this.state.secondTeam}</div>
         {this.props.gameHistory.length > 1
           ? this.props.gameHistory.map(game => {
               return <GameModule key={game.id} {...game} />;

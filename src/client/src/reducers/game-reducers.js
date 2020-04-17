@@ -24,7 +24,9 @@ export default function gamesReducer(
   } else if (action.type === GET_ABS) {
     return Object.assign({}, state, {
       ...state,
-      gameAbs: action.payload
+      gameAbs: action.payload[0],
+      gameStats: action.payload[1],
+      gameDrives: action.payload[2]
     });
   } else {
     return state;

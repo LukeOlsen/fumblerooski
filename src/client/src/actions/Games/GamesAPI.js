@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getGameHistory, getMatchups } from "../index";
+import { getGameHistory, getMatchups, getAbs } from "../index";
 
 export function getAllGames(payload) {
   return (dispatch, getState) => {
@@ -18,9 +18,9 @@ export function getMatchupHistory(pl1, pl2) {
 }
 
 export function getAdvancedBoxedScores(gameID) {
-  return dispatchEvent => {
+  return dispatch => {
     axios.get(`/api/games/ABS/${gameID}`).then(res => {
-      console.log(res);
+      dispatch(getAbs(res.data));
     });
   };
 }
