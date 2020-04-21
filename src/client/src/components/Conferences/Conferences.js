@@ -32,7 +32,7 @@ const RenderTeams = props => {
       </div>
     );
   } else {
-    return <span></span>;
+    return null;
   }
 };
 
@@ -41,13 +41,6 @@ class Conferences extends Component {
     super(props);
 
     this.state = {
-      conferencesApi: [
-        ["SEC", "SEC"],
-        ["ACC", "ACC"],
-        ["Pac-12", "Pac12"],
-        ["Big-10", "Big10"],
-        ["Big-12", "Big12"]
-      ],
       conferenceTeams: {
         SEC: [
           "Alabama",

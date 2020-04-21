@@ -64,23 +64,12 @@ class Sidebar extends Component {
           </div>
         </div>
         <div className="p-1 cursor-pointer">
-          <div
-            className="text-indigo-400 text-shadow hover:text-indigo-200 flex justify-between"
-            onClick={this.setConferenceVisible}
-          >
-            <div>Conferences</div>
-            <div className="mr-2">
-              <FontAwesomeIcon
-                icon={faAngleDown}
-                rotation={`${this.state.conferenceVisibile ? 180 : 0}`}
-              />
+          <Link to="/conferences">
+            <div className="text-indigo-400 text-shadow hover:text-indigo-200 flex justify-between">
+              <div>Conferences</div>
             </div>
-          </div>
-          <div
-            className={`pl-3 ${
-              this.state.conferenceVisibile ? "visible" : "hidden"
-            }`}
-          >
+          </Link>
+          <div className={`pl-3`}>
             <ul>
               <li>
                 <div
@@ -91,7 +80,7 @@ class Sidebar extends Component {
                   <div className="ml-4">
                     <FontAwesomeIcon
                       icon={faAngleDown}
-                      rotation={`${this.state.secVisible ? 180 : 0}`}
+                      rotation={`${this.state.secVisible ? 180 : ""}`}
                     />
                   </div>
                 </div>
@@ -181,7 +170,7 @@ class Sidebar extends Component {
                   <div className="ml-4">
                     <FontAwesomeIcon
                       icon={faAngleDown}
-                      rotation={`${this.state.accVisible ? 180 : 0}`}
+                      rotation={`${this.state.accVisible ? 180 : ""}`}
                     />
                   </div>
                 </div>

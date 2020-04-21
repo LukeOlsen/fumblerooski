@@ -1,9 +1,11 @@
 import axios from "axios";
 import { setTeamData } from "../index";
 
-export function getTeamData(payload) {
+export function getTeamData(team, year) {
+  console.log(team);
+  console.log(year);
   return (dispatch, getState) => {
-    axios.get(`/api/team/${payload}`).then(res => {
+    axios.get(`/api/team/${team}/${year}`).then(res => {
       console.log(res.data);
       dispatch(setTeamData(res.data));
     });

@@ -13,7 +13,7 @@ team.get("/", (req, res) => {
   });
 });
 
-team.get("/:team", async (req, res, next) => {
+team.get("/:team:/:year", async (req, res, next) => {
   const schoolData = SchoolsFBS.findAll({
     where: {
       school: req.params.team
@@ -27,7 +27,7 @@ team.get("/:team", async (req, res, next) => {
             { home_team: req.params.team },
             { away_team: req.params.team }
           ],
-          season: 2019
+          season: req.params.year
         }
       },
       {
@@ -38,7 +38,7 @@ team.get("/:team", async (req, res, next) => {
             { home_team: req.params.team },
             { away_team: req.params.team }
           ],
-          season: 2019
+          season: req.params.year
         }
       }
     ]
@@ -47,7 +47,7 @@ team.get("/:team", async (req, res, next) => {
   const recruitData = Recruits.findAll({
     where: {
       committedTo: req.params.team,
-      year: 2019
+      year: req.params.year
     }
   });
 
