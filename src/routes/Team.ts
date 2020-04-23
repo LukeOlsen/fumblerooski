@@ -13,7 +13,9 @@ team.get("/", (req, res) => {
   });
 });
 
-team.get("/:team:/:year", async (req, res, next) => {
+team.get("/teamData/:team/:year", async (req, res, next) => {
+  console.log(req.params.team);
+  console.log(req.params.year);
   const schoolData = SchoolsFBS.findAll({
     where: {
       school: req.params.team
@@ -53,7 +55,8 @@ team.get("/:team:/:year", async (req, res, next) => {
 
   const talentData = Talents.findAll({
     where: {
-      school: req.params.team
+      school: req.params.team,
+      year: req.params.year
     }
   });
 

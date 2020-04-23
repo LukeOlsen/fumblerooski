@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // setTeam: team => dispatch(setTeam(team)),
-    getTeamData: team => dispatch(getTeamData(team))
+    getTeamData: (team, year) => dispatch(getTeamData(team, year))
   };
 };
 
@@ -52,7 +52,10 @@ class Team extends Component {
 
   handleYearChange(event) {
     this.setState({ year: event.target.value });
-    this.props.getTeamData(this.props.match.params.teamName, this.state.year);
+    this.props.getTeamData(
+      this.props.match.params.teamName,
+      event.target.value
+    );
   }
 
   handleYearSubmit() {
@@ -63,10 +66,7 @@ class Team extends Component {
     console.log("mount");
     console.log(this.state.year);
     let year = this.state.year;
-    this.props.getTeamData(
-      this.props.match.params.teamName,
-      this.state.year.toString()
-    );
+    this.props.getTeamData(this.props.match.params.teamName, this.state.year);
     currentTeam = this.props.match.params.teamName;
   }
 
@@ -106,7 +106,7 @@ class Team extends Component {
                 <select
                   className="block leading-tight text-black mr-10 w-30 appearance-none py-1 px-2 pr-12 rounded"
                   value={this.state.teamYear}
-                  onChange={this.handleTeamYearChange}
+                  onChange={this.handleYearChange}
                 >
                   <option>2019</option>
                   <option>2018</option>
