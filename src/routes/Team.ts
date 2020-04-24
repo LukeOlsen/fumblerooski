@@ -4,6 +4,7 @@ import SchoolsFBS from "../models/Team";
 import Recruits from "../models/Recruits";
 import Talents from "../models/Talents";
 import Games from "../models/Games";
+import Records from "../models/Records";
 
 export const team = Router();
 
@@ -39,6 +40,13 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
             { away_team: req.params.team }
           ],
           season: req.params.year
+        }
+      },
+      {
+        model: Records,
+        as: "record",
+        where: {
+          year: req.params.year
         }
       }
     ]

@@ -4,8 +4,10 @@ import {
   Model,
   HasMany,
   PrimaryKey,
-  DataType
+  DataType,
+  BelongsTo
 } from "sequelize-typescript";
+import SchoolsFBS from "./Team";
 
 @Table
 export default class Records extends Model<Records> {
@@ -75,4 +77,7 @@ export default class Records extends Model<Records> {
 
   @Column
   updatedAt: Date;
+
+  @BelongsTo(() => SchoolsFBS, "school")
+  homeTeam: SchoolsFBS[];
 }
