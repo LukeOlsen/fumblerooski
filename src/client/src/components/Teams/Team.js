@@ -5,27 +5,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import RecruitsTable from "../Recruits/RecruitsTable";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   console.log(state);
   return {
     team: state.teamReducer.team,
     data: state.teamReducer.data,
     teamInfo: state.teamReducer.teamInfo,
     recruits: state.teamReducer.latestRecruits,
-    talent: state.teamReducer.latestTalentRating
+    talent: state.teamReducer.latestTalentRating,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     // setTeam: team => dispatch(setTeam(team)),
-    getTeamData: (team, year) => dispatch(getTeamData(team, year))
+    getTeamData: (team, year) => dispatch(getTeamData(team, year)),
   };
 };
 
 let currentTeam = "";
 
-const RenderLogo = props => {
+const RenderLogo = (props) => {
   console.log(props);
   if (props) {
     return (
@@ -43,7 +43,7 @@ class Team extends Component {
     super(props);
 
     this.state = {
-      year: 2019
+      year: 2019,
     };
 
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -63,8 +63,6 @@ class Team extends Component {
   }
 
   componentDidMount() {
-    console.log("mount");
-    console.log(this.state.year);
     let year = this.state.year;
     this.props.getTeamData(this.props.match.params.teamName, this.state.year);
     currentTeam = this.props.match.params.teamName;
@@ -73,10 +71,7 @@ class Team extends Component {
   componentDidUpdate() {
     console.log(this.state.year);
     if (this.props.match.params.teamName != currentTeam) {
-      this.props.getTeamData(
-        this.props.match.params.teamName,
-        this.state.year.toString()
-      );
+      this.props.getTeamData(this.props.match.params.teamName, this.state.year);
       currentTeam = this.props.match.params.teamName;
     }
   }
@@ -141,7 +136,11 @@ class Team extends Component {
               {this.props.teamInfo[0] ? this.props.teamInfo[0].division : ""}
             </div>
             <div className="flex-1 text-2xl self-center">
-              {this.props.talent[0] ? this.props.talent[0].talent : ""}
+              {this.props.teamInfo[0]
+                ? this.props.teamInfo[0].teamRecord[0].total_wins +
+                  "-" +
+                  this.props.teamInfo[0].teamRecord[0].total_losses
+                : ""}
             </div>
           </div>
         </div>

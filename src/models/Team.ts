@@ -7,9 +7,11 @@ import {
   DataType,
   BelongsTo,
   HasOne,
-  ForeignKey
+  ForeignKey,
 } from "sequelize-typescript";
 import Games from "./Games";
+import Records from "./Records";
+import Recruits from "./Recruits";
 
 @Table
 export default class SchoolsFBS extends Model<SchoolsFBS> {
@@ -58,4 +60,10 @@ export default class SchoolsFBS extends Model<SchoolsFBS> {
 
   @HasMany(() => Games, "away_id")
   awayGames: Games[];
+
+  @HasMany(() => Records, "team_id")
+  teamRecord: Records[];
+
+  @HasMany(() => Recruits, "team_id")
+  recruits: Recruits[];
 }

@@ -9,7 +9,7 @@ import Records from "../models/Records";
 export const team = Router();
 
 team.get("/", (req, res) => {
-  SchoolsFBS.findAll().then(teams => {
+  SchoolsFBS.findAll().then((teams) => {
     res.send(teams);
   });
 });
@@ -17,7 +17,7 @@ team.get("/", (req, res) => {
 team.get("/teamData/:team/:year", async (req, res, next) => {
   const schoolData = SchoolsFBS.findAll({
     where: {
-      school: req.params.team
+      school: req.params.team,
     },
     include: [
       {
@@ -26,10 +26,10 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
         where: {
           [Op.or]: [
             { home_team: req.params.team },
-            { away_team: req.params.team }
+            { away_team: req.params.team },
           ],
-          season: req.params.year
-        }
+          season: req.params.year,
+        },
       },
       {
         model: Games,
@@ -37,40 +37,41 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
         where: {
           [Op.or]: [
             { home_team: req.params.team },
-            { away_team: req.params.team }
+            { away_team: req.params.team },
           ],
-          season: req.params.year
-        }
+          season: req.params.year,
+        },
       },
       {
         model: Records,
-        as: "record",
+        as: "teamRecord",
         where: {
-          year: req.params.year
-        }
-      }
-    ]
+          year: req.params.year,
+          team: req.params.team,
+        },
+      },
+    ],
   });
 
   const recruitData = Recruits.findAll({
     where: {
       committedTo: req.params.team,
-      year: req.params.year
-    }
+      year: req.params.year,
+    },
   });
 
   const talentData = Talents.findAll({
     where: {
       school: req.params.team,
-      year: req.params.year
-    }
+      year: req.params.year,
+    },
   });
 
   Promise.all([schoolData, recruitData, talentData])
-    .then(result => {
+    .then((result) => {
       res.send(result);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });

@@ -5,7 +5,8 @@ import {
   HasMany,
   PrimaryKey,
   DataType,
-  BelongsTo
+  BelongsTo,
+  ForeignKey,
 } from "sequelize-typescript";
 import SchoolsFBS from "./Team";
 
@@ -21,14 +22,21 @@ export default class Records extends Model<Records> {
   @Column
   team: string;
 
+  @ForeignKey(() => SchoolsFBS)
+  @Column
+  team_id: number;
+
   @Column
   conference: string;
 
   @Column
-  divison: number;
+  division: string;
 
   @Column
   total_games: number;
+
+  @Column
+  total_wins: number;
 
   @Column
   total_losses: number;
@@ -78,6 +86,6 @@ export default class Records extends Model<Records> {
   @Column
   updatedAt: Date;
 
-  @BelongsTo(() => SchoolsFBS, "school")
-  homeTeam: SchoolsFBS[];
+  @BelongsTo(() => SchoolsFBS, "team_id")
+  teamRecord: SchoolsFBS[];
 }
