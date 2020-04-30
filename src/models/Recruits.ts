@@ -4,8 +4,11 @@ import {
   Model,
   HasMany,
   PrimaryKey,
-  DataType
+  DataType,
+  ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
+import SchoolsFBS from "./Team";
 
 @Table
 export default class Recruits extends Model<Recruits> {
@@ -30,6 +33,10 @@ export default class Recruits extends Model<Recruits> {
 
   @Column
   committedTo: string;
+
+  @Column
+  @ForeignKey(() => SchoolsFBS)
+  team_id: number;
 
   @Column
   position: string;
@@ -60,4 +67,7 @@ export default class Recruits extends Model<Recruits> {
 
   @Column
   updatedAt: Date;
+
+  @BelongsTo(() => SchoolsFBS, "team_id")
+  teamRecord: SchoolsFBS[];
 }
