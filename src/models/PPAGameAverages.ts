@@ -10,10 +10,15 @@ import {
   BelongsToMany,
 } from "sequelize-typescript";
 import Games from "./Games";
+import SchoolsFBS from "./Team";
+import { Col } from "sequelize/types/lib/utils";
 
 @Table
 export default class PPAGameAverages extends Model<PPAGameAverages> {
   @PrimaryKey
+  @Column
+  id: number;
+
   @ForeignKey(() => Games)
   @Column
   gameId: number;
@@ -30,6 +35,10 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
   @Column
   team: string;
 
+  @ForeignKey(() => SchoolsFBS)
+  @Column
+  team_id: number;
+
   @Column
   opponent: string;
 
@@ -40,7 +49,7 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
   offense_passing: number;
 
   @Column
-  offence_rushing: number;
+  offense_rushing: number;
 
   @Column
   offense_firstDown: number;
@@ -49,7 +58,7 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
   offense_secondDown: number;
 
   @Column
-  offsense_thirdDown: number;
+  offense_thirdDown: number;
 
   @Column
   defense_overall: number;
@@ -71,4 +80,7 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
 
   @BelongsTo(() => Games, "id")
   games: Games;
+
+  @BelongsTo(() => SchoolsFBS, "team_id")
+  SchoolsFBS: SchoolsFBS;
 }

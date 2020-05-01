@@ -12,6 +12,7 @@ import {
 import Games from "./Games";
 import Records from "./Records";
 import Recruits from "./Recruits";
+import PPAGameAverages from "./PPAGameAverages";
 
 @Table
 export default class SchoolsFBS extends Model<SchoolsFBS> {
@@ -63,6 +64,9 @@ export default class SchoolsFBS extends Model<SchoolsFBS> {
 
   @HasMany(() => Records, "team_id")
   teamRecord: Records[];
+
+  @HasMany(() => PPAGameAverages, "team_id")
+  ppaGameAverages: PPAGameAverages[];
 
   @HasMany(() => Recruits, "team_id")
   recruits: Recruits[];

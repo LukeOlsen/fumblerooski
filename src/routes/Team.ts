@@ -5,6 +5,7 @@ import Recruits from "../models/Recruits";
 import Talents from "../models/Talents";
 import Games from "../models/Games";
 import Records from "../models/Records";
+import PPAGameAverages from "../models/PPAGameAverages";
 
 export const team = Router();
 
@@ -48,6 +49,13 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
         where: {
           year: req.params.year,
           team: req.params.team,
+        },
+      },
+      {
+        model: PPAGameAverages,
+        where: {
+          team: req.params.team,
+          season: req.params.year,
         },
       },
     ],
