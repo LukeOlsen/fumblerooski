@@ -6,6 +6,7 @@ import Talents from "../models/Talents";
 import Games from "../models/Games";
 import Records from "../models/Records";
 import PPAGameAverages from "../models/PPAGameAverages";
+import TeamFunctions from "../Teams/TeamData";
 
 export const team = Router();
 
@@ -53,6 +54,23 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
       },
       {
         model: PPAGameAverages,
+        attributes: [
+          "week",
+          "season",
+          "opponent",
+          "offense_firstDown",
+          "offense_overall",
+          "offense_passing",
+          "offense_rushing",
+          "offense_secondDown",
+          "offense_thirdDown",
+          "defense_firstDown",
+          "defense_overall",
+          "defense_passing",
+          "defense_rushing",
+          "defense_secondDown",
+          "defense_thirdDown",
+        ],
         where: {
           team: req.params.team,
           season: req.params.year,
@@ -76,7 +94,11 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
   });
 
   Promise.all([schoolData, recruitData, talentData])
-    .then((result) => {
+    .then(async (result: any) => {
+      let newPpaFormat = await TeamFunctions.cleanPPA(
+        result[0][0].ppaGameAverages
+      );
+      result.push(newPpaFormat);
       res.send(result);
     })
     .catch((err) => {

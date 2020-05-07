@@ -4,6 +4,7 @@ import { getTeamData } from "../../actions/Teams/TeamsAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import RecruitsTable from "../Recruits/RecruitsTable";
+import PPALine from "../Charts/PPALineChart";
 
 const mapStateToProps = (state) => {
   console.log(state);
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => {
     teamInfo: state.teamReducer.teamInfo,
     recruits: state.teamReducer.latestRecruits,
     talent: state.teamReducer.latestTalentRating,
+    PPA: state.teamReducer.ppaAverages,
   };
 };
 
@@ -34,7 +36,7 @@ const RenderLogo = (props) => {
       </div>
     );
   } else {
-    return <span></span>;
+    return null;
   }
 };
 
@@ -77,12 +79,6 @@ class Team extends Component {
   }
 
   render() {
-    console.log(this.state);
-    if (this.props.team) {
-      const styles = {
-        // background: this.props.team.alt_color
-      };
-    }
     return (
       <div className="p-2 pl-10 flex-grow max-h-full overflow-y-scroll flex-row min-h-screen">
         <div className="flex">
@@ -145,12 +141,11 @@ class Team extends Component {
           </div>
         </div>
         <div className="flex flex-wrap">
-          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
+          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
+            {this.props.PPA ? <PPALine PPA={this.props.PPA} /> : null}
+          </div>
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
         </div>
-        {/* <div className="h-64">
-          <RecruitGeoMap />
-        </div> */}
         <div className="bg-gray-700 rounded m-2">
           <RecruitsTable recruits={[this.props.recruits]} />
         </div>

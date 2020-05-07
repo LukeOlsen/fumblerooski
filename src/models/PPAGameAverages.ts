@@ -42,41 +42,41 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
   @Column
   opponent: string;
 
-  @Column
-  offense_overall: number;
+  @Column(DataType.FLOAT)
+  offense_overall: any;
 
-  @Column
-  offense_passing: number;
+  @Column(DataType.FLOAT)
+  offense_passing: any;
 
-  @Column
-  offense_rushing: number;
+  @Column(DataType.FLOAT)
+  offense_rushing: any;
 
-  @Column
-  offense_firstDown: number;
+  @Column(DataType.FLOAT)
+  offense_firstDown: any;
 
-  @Column
-  offense_secondDown: number;
+  @Column(DataType.FLOAT)
+  offense_secondDown: any;
 
-  @Column
-  offense_thirdDown: number;
+  @Column(DataType.FLOAT)
+  offense_thirdDown: any;
 
-  @Column
-  defense_overall: number;
+  @Column(DataType.FLOAT)
+  defense_overall: any;
 
-  @Column
-  defense_passing: number;
+  @Column(DataType.FLOAT)
+  defense_passing: any;
 
-  @Column
-  defense_rushing: number;
+  @Column(DataType.FLOAT)
+  defense_rushing: any;
 
-  @Column
-  defense_firstDown: number;
+  @Column(DataType.FLOAT)
+  defense_firstDown: any;
 
-  @Column
-  defense_secondDown: number;
+  @Column(DataType.FLOAT)
+  defense_secondDown: any;
 
-  @Column
-  defense_thirdDown: number;
+  @Column(DataType.FLOAT)
+  defense_thirdDown: any;
 
   @BelongsTo(() => Games, "id")
   games: Games;
