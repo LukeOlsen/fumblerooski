@@ -55,8 +55,10 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
       {
         model: PPAGameAverages,
         attributes: [
+          "gameId",
           "week",
           "season",
+          "season_type",
           "opponent",
           "offense_firstDown",
           "offense_overall",
@@ -76,6 +78,9 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
           season: req.params.year,
         },
       },
+    ],
+    order: [
+      [{ model: PPAGameAverages, as: "ppaGameAverages" }, "gameId", "ASC"],
     ],
   });
 

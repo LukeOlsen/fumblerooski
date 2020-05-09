@@ -24,6 +24,6 @@ export interface ppaApi {
 
 export interface ppaLineChartData {
   id: string;
-  o: number;
-  d: number;
+  Offense: number;
+  Defense: number;
 }

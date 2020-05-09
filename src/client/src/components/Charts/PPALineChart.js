@@ -19,23 +19,28 @@ const PPALine = (data) => {
           data={data.PPA[0].data}
           margin={{
             top: 20,
-            right: 10,
-            left: 10,
+            right: 20,
+            left: 0,
             bottom: 5,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#efefef" />
-          <XAxis stroke="#efefef" dataKey="id" tick={{ fontSize: 5 }} />
+          <XAxis
+            interval={0}
+            stroke="#efefef"
+            dataKey="id"
+            tick={{ fontSize: 10 }}
+          />
           <YAxis stroke="#efefef" />
           <Tooltip />
           <Legend />
           <Line
             type="monotone"
-            dataKey="d"
+            dataKey="Defense"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="o" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="Offense" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     );

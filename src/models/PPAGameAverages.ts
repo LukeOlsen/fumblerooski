@@ -27,6 +27,9 @@ export default class PPAGameAverages extends Model<PPAGameAverages> {
   season: number;
 
   @Column
+  season_type: string;
+
+  @Column
   week: number;
 
   @Column
