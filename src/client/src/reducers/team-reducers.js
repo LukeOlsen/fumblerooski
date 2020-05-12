@@ -7,16 +7,7 @@ import teamsList from "../data/teamsList";
 import initialTeams from "../data/defaultTeams";
 
 export default function teamReducer(state = initialTeams, action) {
-  if (action.type === SET_TEAM) {
-    console.log(action.payload);
-    return Object.assign({}, state, {
-      ...state,
-      teamInfo: action.payload[0],
-      latestRecruits: action.payload[1],
-      latestTalentRating: action.payload[2],
-      ppaAverages: action.payload[3],
-    });
-  } else if (action.type === SET_CONFERENCE) {
+  if (action.type === SET_CONFERENCE) {
     return Object.assign({}, state, {
       ...state,
       data: action.payload,
@@ -28,7 +19,8 @@ export default function teamReducer(state = initialTeams, action) {
       teamInfo: action.payload[0],
       latestRecruits: action.payload[1],
       latestTalentRating: action.payload[2],
-      ppaAverages: action.payload[3],
+      ppaAverages: action.payload[4],
+      BCR: action.payload[5],
     });
   }
   return state;

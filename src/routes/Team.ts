@@ -7,6 +7,7 @@ import Games from "../models/Games";
 import Records from "../models/Records";
 import PPAGameAverages from "../models/PPAGameAverages";
 import TeamFunctions from "../Teams/TeamData";
+import RecruitFunctions from "../recruits/RecruitData";
 
 export const team = Router();
 
@@ -98,24 +99,28 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
     },
   });
 
-  Promise.all([schoolData, recruitData, talentData])
+  const BCR = Recruits.findAll({
+    attributes: ["stars"],
+    where: {
+      year: {
+        [Op.between]: [Number(req.params.year) - 3, Number(req.params.year)],
+      },
+      committedTo: req.params.team,
+    },
+  });
+
+  Promise.all([schoolData, recruitData, talentData, BCR])
     .then(async (result: any) => {
       let newPpaFormat = await TeamFunctions.cleanPPA(
         result[0][0].ppaGameAverages
       );
+
+      let BCresponse = await RecruitFunctions.calculateBCR(result[3]);
       result.push(newPpaFormat);
+      result.push(BCresponse);
       res.send(result);
     })
     .catch((err) => {
       console.log(err);
     });
 });
-
-// var express = require("express");
-// var teamData = express.Router();
-// var teamQ = require("./TeamQueries");
-
-// teamData.get("/:team", async (req, res) => {
-//   let teamData = await teamQ(req.params.team);
-//   res.json(teamData);
-// });

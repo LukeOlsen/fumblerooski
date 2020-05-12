@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import RecruitsTable from "../Recruits/RecruitsTable";
 import PPALine from "../Charts/PPALineChart";
+import BCRPieChart from "../Charts/BCRPieChart";
 
 const mapStateToProps = (state) => {
   console.log(state);
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
     recruits: state.teamReducer.latestRecruits,
     talent: state.teamReducer.latestTalentRating,
     PPA: state.teamReducer.ppaAverages,
+    BCR: state.teamReducer.BCR,
   };
 };
 
@@ -144,7 +146,9 @@ class Team extends Component {
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
             {this.props.PPA ? <PPALine PPA={this.props.PPA} /> : null}
           </div>
-          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg"></div>
+          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
+            {this.props.BCR ? <BCRPieChart data={this.props.BCR} /> : null}
+          </div>
         </div>
         <div className="bg-gray-700 rounded m-2">
           <RecruitsTable recruits={[this.props.recruits]} />

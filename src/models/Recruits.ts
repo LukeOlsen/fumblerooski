@@ -69,5 +69,5 @@ export default class Recruits extends Model<Recruits> {
   updatedAt: Date;
 
   @BelongsTo(() => SchoolsFBS, "team_id")
-  teamRecord: SchoolsFBS[];
+  SchoolsFBS: SchoolsFBS[];
 }
