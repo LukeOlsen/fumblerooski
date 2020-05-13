@@ -1,5 +1,14 @@
 import React from "react";
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Legend,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
+
+const colors = ["#66a1ff", "#82ca9d"];
 
 const BCRPie = (props) => {
   console.log(props.data);
@@ -7,7 +16,12 @@ const BCRPie = (props) => {
     return (
       <ResponsiveContainer>
         <PieChart>
-          <Pie data={props.data} fill="#8884d8" label />
+          <Pie data={props.data} fill="#8884d8" label>
+            {props.data.map((entry, index) => {
+              return <Cell key={`cell-${index}`} fill={colors[index]} />;
+            })}
+          </Pie>
+          <Tooltip />
         </PieChart>
       </ResponsiveContainer>
     );

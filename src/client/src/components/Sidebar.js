@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Navbar.css";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {};
 };
 
@@ -23,7 +23,7 @@ class Sidebar extends Component {
       accVisible: false,
       big10Visible: false,
       big12Visible: false,
-      pac12Visible: false
+      pac12Visible: false,
     };
     this.setConferenceVisible = this.setConferenceVisible.bind(this);
   }
@@ -50,7 +50,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="h-screen bg-gray-700 w-48 fixed overflow-auto">
+      <div className="h-screen bg-gray-700 md:w-48 fixed overflow-auto">
         <div className="p-1 pt-6 text-indigo-400 hover:text-indigo-200 text-shadow cursor-pointer ">
           <div>
             <Link className="w-full h-full" to="/">

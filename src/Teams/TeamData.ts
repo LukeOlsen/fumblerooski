@@ -4,7 +4,6 @@ export default class TeamFunctions {
   public static async cleanPPA(
     data: Array<ppaQueryResults>
   ): Promise<ppaApi[]> {
-    // console.log(data);
     let result: Array<ppaApi> = [];
     let offense: ppaApi = {
       id: "offense",

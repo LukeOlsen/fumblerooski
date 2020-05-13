@@ -22,7 +22,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // setTeam: team => dispatch(setTeam(team)),
     getTeamData: (team, year) => dispatch(getTeamData(team, year)),
   };
 };

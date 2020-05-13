@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-const RecruitsTable = props => {
-  //   console.log(props.recruits[0]);
+const RecruitsTable = (props) => {
   if (props.recruits[0].length > 1) {
     return (
       <div className="text-center pb-2">
@@ -14,7 +13,6 @@ const RecruitsTable = props => {
               <th>Height</th>
               <th>Weight</th>
               <th>Stars</th>
-              <th>Rating</th>
               <th>State</th>
             </tr>
           </thead>
@@ -29,7 +27,6 @@ const RecruitsTable = props => {
                     <td className="border">{recruit.height}</td>
                     <td className="border">{recruit.weight}</td>
                     <td className="border">{recruit.stars}</td>
-                    <td className="border">{recruit.rating}</td>
                     <td className="border">{recruit.stateProvince}</td>
                   </tr>
                 );

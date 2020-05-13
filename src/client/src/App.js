@@ -15,8 +15,8 @@ function App() {
     <Router>
       <div className="overflow-auto">
         <Route exact path="/" exact component={Home} />
-        <Sidebar className="w-3" />
-        <div className="pl-40 flex bg-gray-900 text-gray-300">
+        <Sidebar className="sm:hidden md:w-3 sm:w-1" />
+        <div className="md:pl-40 flex bg-gray-900 text-gray-300">
           <Route exact path="/about" component={About} />
           <Route path="/conferences" component={Conferences} />
           <Route path="/team/:teamName" component={Team} />
