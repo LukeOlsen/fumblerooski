@@ -8,6 +8,7 @@ import Records from "../models/Records";
 import PPAGameAverages from "../models/PPAGameAverages";
 import TeamFunctions from "../Teams/TeamData";
 import RecruitFunctions from "../recruits/RecruitData";
+import GamesFunctions from "../Games/GamesData";
 
 export const team = Router();
 
@@ -19,6 +20,7 @@ team.get("/", (req, res) => {
 
 team.get("/teamData/:team/:year", async (req, res, next) => {
   const schoolData = SchoolsFBS.findAll({
+    attributes: ["conference", "division", "mascot", "logos_1"],
     where: {
       school: req.params.team,
     },
@@ -48,6 +50,7 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
       {
         model: Records,
         as: "teamRecord",
+        attributes: ["total_wins", "total_losses"],
         where: {
           year: req.params.year,
           team: req.params.team,
@@ -116,10 +119,17 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
       );
 
       let BCresponse = await RecruitFunctions.calculateBCR(result[3]);
+
+      let gameSort = await GamesFunctions.cleanTeamPageGames(
+        result[0][0].homeGames,
+        result[0][0].awayGames
+      );
       result.push(newPpaFormat);
       result.push(BCresponse);
+      result.push(gameSort);
       res.send(result);
     })
+
     .catch((err) => {
       console.log(err);
     });
