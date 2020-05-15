@@ -141,7 +141,7 @@ class Team extends Component {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap flex-col md:flex-row">
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
             {this.props.PPA ? <PPALine PPA={this.props.PPA} /> : null}
           </div>

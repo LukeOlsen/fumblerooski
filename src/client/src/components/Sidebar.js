@@ -50,7 +50,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="h-screen bg-gray-700 md:w-48 fixed overflow-auto">
+      <div className="h-screen bg-gray-700 w-1 md:w-48 fixed overflow-auto">
         <div className="p-1 pt-6 text-indigo-400 hover:text-indigo-200 text-shadow cursor-pointer ">
           <div>
             <Link className="w-full h-full" to="/">
