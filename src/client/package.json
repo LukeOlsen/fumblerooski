@@ -6,18 +6,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@nivo/geo": "^0.61.1",
-    "@nivo/pie": "^0.61.1",
     "axios": "^0.19.2",
     "eslint-utils": "^1.4.3",
     "lodash": "^4.17.15",
-    "nivo": "^0.31.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
+    "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
@@ -45,7 +43,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.7.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest-mock-axios": "^4.0.0",
     "postcss-cli": "^6.1.3",
+    "react-test-renderer": "^16.13.1",
+    "redux-mock-store": "^1.5.4",
     "tailwindcss": "^1.2.0"
   },
   "proxy": "http://localhost:5000/"
