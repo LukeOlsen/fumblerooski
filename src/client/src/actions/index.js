@@ -7,7 +7,9 @@ import {
   SET_TEAM_DATA,
   GET_GAME_HISTORY,
   GET_MATCHUP_HISTORY,
-  GET_ABS
+  GET_ABS,
+  LOADING,
+  DONE_LOADING,
 } from "../constants/action-types";
 
 export function setTeam(payload) {
@@ -44,4 +46,12 @@ export function getMatchups(payload) {
 
 export function getAbs(payload) {
   return { type: GET_ABS, payload };
+}
+
+export function loading(payload) {
+  return { type: LOADING, payload };
+}
+
+export function doneLoading(payload) {
+  return { type: DONE_LOADING, payload };
 }
