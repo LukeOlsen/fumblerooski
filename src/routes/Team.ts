@@ -27,6 +27,13 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
     include: [
       {
         model: Games,
+        attributes: [
+          "id",
+          "home_team",
+          "home_points",
+          "away_team",
+          "away_points",
+        ],
         as: "homeGames",
         where: {
           [Op.or]: [
@@ -38,6 +45,13 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
       },
       {
         model: Games,
+        attributes: [
+          "id",
+          "home_team",
+          "home_points",
+          "away_team",
+          "away_points",
+        ],
         as: "awayGames",
         where: {
           [Op.or]: [

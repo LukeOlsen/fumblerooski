@@ -6,6 +6,9 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import RecruitsTable from "../Recruits/RecruitsTable";
 import PPALine from "../Charts/PPALineChart";
 import BCRPieChart from "../Charts/BCRPieChart";
+import Loading from "../Loading";
+import SimpleMatchup from "./TeamYearMatchups";
+import { loading, doneLoading } from "../../actions/index";
 
 const mapStateToProps = (state) => {
   console.log(state);
@@ -17,19 +20,22 @@ const mapStateToProps = (state) => {
     talent: state.teamReducer.latestTalentRating,
     PPA: state.teamReducer.ppaAverages,
     BCR: state.teamReducer.BCR,
+    yearRecord: state.teamReducer.yearRecord,
+    isLoading: state.generalReducer.isLoading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getTeamData: (team, year) => dispatch(getTeamData(team, year)),
+    loading: () => dispatch(loading()),
+    doneLoading: () => dispatch(doneLoading()),
   };
 };
 
 let currentTeam = "";
 
 const RenderLogo = (props) => {
-  console.log(props);
   if (props) {
     return (
       <div className="w-full md:flex-1 self-center">
@@ -41,7 +47,7 @@ const RenderLogo = (props) => {
   }
 };
 
-class Team extends Component {
+export class Team extends Component {
   constructor(props) {
     super(props);
 
@@ -66,14 +72,13 @@ class Team extends Component {
   }
 
   componentDidMount() {
-    let year = this.state.year;
     this.props.getTeamData(this.props.match.params.teamName, this.state.year);
     currentTeam = this.props.match.params.teamName;
   }
 
   componentDidUpdate() {
-    console.log(this.state.year);
     if (this.props.match.params.teamName != currentTeam) {
+      this.props.loading();
       this.props.getTeamData(this.props.match.params.teamName, this.state.year);
       currentTeam = this.props.match.params.teamName;
     }
@@ -86,7 +91,7 @@ class Team extends Component {
           <div className="flex-auto">
             <p className="text-4xl">
               {this.props.match.params.teamName}{" "}
-              {this.props.teamInfo[0] ? this.props.teamInfo[0].mascot : ""}
+              {!this.props.isLoading ? this.props.teamInfo[0].mascot : ""}
             </p>
           </div>
           <div className="flex-auto flex text-center">
@@ -127,13 +132,13 @@ class Team extends Component {
               </div>
             </form>
             <div className="flex-1 text-2xl self-center">
-              {this.props.teamInfo[0] ? this.props.teamInfo[0].conference : ""}
+              {!this.props.isLoading ? this.props.teamInfo[0].conference : ""}
             </div>
             <div className="flex-1 text-2xl self-center">
-              {this.props.teamInfo[0] ? this.props.teamInfo[0].division : ""}
+              {!this.props.isLoading ? this.props.teamInfo[0].division : ""}
             </div>
             <div className="flex-1 text-2xl self-center">
-              {this.props.teamInfo[0]
+              {!this.props.isLoading
                 ? this.props.teamInfo[0].teamRecord[0].total_wins +
                   "-" +
                   this.props.teamInfo[0].teamRecord[0].total_losses
@@ -143,15 +148,30 @@ class Team extends Component {
         </div>
         <div className="flex flex-wrap flex-col md:flex-row">
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
-            {this.props.PPA ? <PPALine PPA={this.props.PPA} /> : null}
+            {!this.props.isLoading ? <PPALine PPA={this.props.PPA} /> : null}
           </div>
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
-            {this.props.BCR ? <BCRPieChart data={this.props.BCR} /> : null}
+            {!this.props.isLoading ? (
+              <BCRPieChart data={this.props.BCR} />
+            ) : null}
           </div>
         </div>
-        <div className="bg-gray-700 rounded m-2">
-          <RecruitsTable recruits={[this.props.recruits]} />
+        <div className="flex">
+          <div className="bg-gray-700 rounded m-2 h-32 sm:flex-1 md:flex-1/3">
+            {!this.props.isLoading ? (
+              <SimpleMatchup props={this.props.yearRecord} />
+            ) : null}
+          </div>
+          <div className="bg-gray-700 rounded m-2 h-32 sm:flex-1 md:flex-1/3"></div>
         </div>
+        <div className="bg-gray-700 rounded m-2">
+          {this.props.isLoading ? (
+            ""
+          ) : (
+            <RecruitsTable recruits={[this.props.recruits]} />
+          )}
+        </div>
+        {this.props.isLoading ? <Loading /> : null}
       </div>
     );
   }
