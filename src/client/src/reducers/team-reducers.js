@@ -21,6 +21,7 @@ export default function teamReducer(state = initialTeams, action) {
       latestTalentRating: action.payload[2],
       ppaAverages: action.payload[4],
       BCR: action.payload[5],
+      yearRecord: action.payload[6],
     });
   }
   return state;

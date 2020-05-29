@@ -12,7 +12,8 @@ const colors = ["#66a1ff", "#82ca9d"];
 
 const BCRPie = (props) => {
   console.log(props.data);
-  if (props.data.length > 1) {
+  if (props.data.length > 0) {
+    console.log(props.data);
     return (
       <ResponsiveContainer>
         <PieChart>
