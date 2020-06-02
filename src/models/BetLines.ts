@@ -17,8 +17,8 @@ export default class BetLines extends Model<BetLines> {
   @Column
   id: number;
 
-  @Column
   @ForeignKey(() => SchoolsFBS)
+  @Column
   home_id: number;
 
   @Column
@@ -27,8 +27,8 @@ export default class BetLines extends Model<BetLines> {
   @Column
   homeScore: number;
 
-  @Column
   @ForeignKey(() => SchoolsFBS)
+  @Column
   away_id: number;
 
   @Column
@@ -41,26 +41,20 @@ export default class BetLines extends Model<BetLines> {
   lines: any;
 
   @Column
-  betLine_main: string;
+  betLine_provider: string;
+
+  @Column(DataType.FLOAT)
+  betLine_spread: any;
 
   @Column
-  betLine_main_spread: number;
+  betLine_formattedSpread: string;
 
   @Column
-  betLine_main_formattedSpread: string;
-
-  @Column
-  betLine_main_overUnder: string;
-
-  @Column
-  createdAt: Date;
-
-  @Column
-  updatedAt: Date;
+  betLine_overUnder: string;
 
   @BelongsTo(() => SchoolsFBS, "home_id")
-  home: SchoolsFBS[];
+  homeBet: SchoolsFBS[];
 
   @BelongsTo(() => SchoolsFBS, "away_id")
-  away: SchoolsFBS[];
+  awayBet: SchoolsFBS[];
 }
