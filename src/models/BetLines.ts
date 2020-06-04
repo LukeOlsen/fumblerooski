@@ -10,10 +10,12 @@ import {
   BelongsToMany,
 } from "sequelize-typescript";
 import SchoolsFBS from "./Team";
+import Games from "./Games";
 
 @Table
 export default class BetLines extends Model<BetLines> {
   @PrimaryKey
+  @ForeignKey(() => Games)
   @Column
   id: number;
 
@@ -57,4 +59,7 @@ export default class BetLines extends Model<BetLines> {
 
   @BelongsTo(() => SchoolsFBS, "away_id")
   awayBet: SchoolsFBS[];
+
+  @BelongsTo(() => Games)
+  games: Games;
 }

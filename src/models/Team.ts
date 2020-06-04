@@ -13,6 +13,7 @@ import Games from "./Games";
 import Records from "./Records";
 import Recruits from "./Recruits";
 import PPAGameAverages from "./PPAGameAverages";
+import BetLines from "./BetLines";
 
 @Table
 export default class SchoolsFBS extends Model<SchoolsFBS> {
@@ -70,4 +71,10 @@ export default class SchoolsFBS extends Model<SchoolsFBS> {
 
   @HasMany(() => Recruits, "team_id")
   recruits: Recruits[];
+
+  @HasMany(() => BetLines, "home_id")
+  homeBet: BetLines[];
+
+  @HasMany(() => BetLines, "away_id")
+  awayBet: BetLines[];
 }

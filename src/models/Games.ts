@@ -7,9 +7,10 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
-  BelongsToMany
+  BelongsToMany,
 } from "sequelize-typescript";
 import SchoolsFBS from "./Team";
+import BetLines from "./BetLines";
 
 @Table
 export default class Games extends Model<Games> {
@@ -93,4 +94,7 @@ export default class Games extends Model<Games> {
 
   @BelongsTo(() => SchoolsFBS, "away_id")
   awayTeam: SchoolsFBS[];
+
+  @HasMany(() => BetLines)
+  betLines: BetLines[];
 }
