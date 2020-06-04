@@ -150,19 +150,18 @@ export class Team extends Component {
           <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
             {!this.props.isLoading ? <PPALine PPA={this.props.PPA} /> : null}
           </div>
-          <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
-            {!this.props.isLoading ? (
-              <BCRPieChart data={this.props.BCR} />
-            ) : null}
-          </div>
         </div>
         <div className="flex">
-          <div className="bg-gray-700 rounded m-2 h-32 sm:flex-1 md:flex-1/3">
+          <div className="bg-gray-700 rounded m-2 h-64 sm:flex-1 md:flex-1/3">
             {!this.props.isLoading ? (
               <SimpleMatchup props={this.props.yearRecord} />
             ) : null}
           </div>
-          <div className="bg-gray-700 rounded m-2 h-32 sm:flex-1 md:flex-1/3"></div>
+          <div className="bg-gray-700 rounded m-2 h-64 sm:flex-1 md:flex-1/3">
+            {!this.props.isLoading ? (
+              <BCRPieChart data={this.props.BCR} />
+            ) : null}
+          </div>
         </div>
         <div className="bg-gray-700 rounded m-2">
           {this.props.isLoading ? (

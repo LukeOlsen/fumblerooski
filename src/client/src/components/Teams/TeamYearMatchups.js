@@ -6,8 +6,8 @@ const SimpleMatchup = ({ props }) => {
     <div className="w-full overflow-auto h-full">
       {props.map((el) => {
         return (
-          <div className="flex text-center">
-            <div className="w-24 m-2 text-left">
+          <div className="flex text-center justify-center">
+            <div className="w-40 m-2 text-left">
               <div>{el.home_team}</div>
             </div>
             <div className="w-8 m-2">
@@ -19,7 +19,7 @@ const SimpleMatchup = ({ props }) => {
             <div className="w-8 m-2">
               <div>{el.away_points}</div>
             </div>
-            <div className="w-24 m-2 text-right">
+            <div className="w-40 m-2 text-right">
               <div>{el.away_team}</div>
             </div>
           </div>
