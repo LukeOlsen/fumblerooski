@@ -2,11 +2,10 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="text-xl flex-grow text-center max-h-full overflow-y-scroll">
+    <div className="text-xl flex-grow text-center max-h-full h-screen overflow-y-scroll">
       <h1 className="text-6xl mb-4">Welcome to Fumblerooski</h1>
       <div className="text-left px-32">
         <h2 className="mb-4">The world's only college football app</h2>
-
         <p>So why a college football app?</p>
         <p>
           I created this app because I wanted to make a personal project that
