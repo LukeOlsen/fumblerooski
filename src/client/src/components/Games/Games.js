@@ -3,21 +3,24 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { getAllGames, getMatchupHistory } from "../../actions/Games/GamesAPI";
+import { loading } from "../../actions/index";
 import GameModule from "./GameModule";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getAllGames: team => dispatch(getAllGames(team)),
+    getAllGames: (team) => dispatch(getAllGames(team)),
     getMatchupHistory: (team1, team2) =>
-      dispatch(getMatchupHistory(team1, team2))
+      dispatch(getMatchupHistory(team1, team2)),
+    loading: () => dispatch(loading),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     gameHistory: state.gamesReducer.gameHistory,
     matchupHistory: state.gamesReducer.matchupHistory,
-    teamsList: state.teamReducer.teamsList
+    teamsList: state.teamReducer.teamsList,
+    isLoading: state.generalReducer.isLoading,
   };
 };
 
@@ -27,7 +30,7 @@ class Games extends Component {
 
     this.state = {
       firstTeam: "Select",
-      secondTeam: "Select"
+      secondTeam: "Select",
     };
 
     this.handleFirstTeamChange = this.handleFirstTeamChange.bind(this);
@@ -77,7 +80,7 @@ class Games extends Component {
                 onChange={this.handleFirstTeamChange}
               >
                 <option selected>Select</option>
-                {this.props.teamsList.map(team => {
+                {this.props.teamsList.map((team) => {
                   return <option key={team.school}>{team.school}</option>;
                 })}
               </select>
@@ -112,16 +115,18 @@ class Games extends Component {
             <input className="mx-10" type="submit" value="Submit" />
           </form>
         </div>
-        {this.props.gameHistory.length > 1
-          ? this.props.gameHistory.map(game => {
-              return <GameModule key={game.id} {...game} />;
-            })
-          : null}
-        {this.props.matchupHistory.length > 1
-          ? this.props.matchupHistory.map(game => {
-              return <GameModule key={game.id} {...game} />;
-            })
-          : null}
+        <div className="flex flex-wrap justify-around">
+          {this.props.gameHistory.length > 1
+            ? this.props.gameHistory.map((game) => {
+                return <GameModule key={game.id} {...game} />;
+              })
+            : null}
+          {this.props.matchupHistory.length > 1
+            ? this.props.matchupHistory.map((game) => {
+                return <GameModule key={game.id} {...game} />;
+              })
+            : null}
+        </div>
       </div>
     );
   }

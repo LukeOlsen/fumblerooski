@@ -5,19 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { getAdvancedBoxedScores } from "../../actions/Games/GamesAPI";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getAdvancedBoxedScores: gameId => dispatch(getAdvancedBoxedScores(gameId))
+    getAdvancedBoxedScores: (gameId) =>
+      dispatch(getAdvancedBoxedScores(gameId)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    teamsList: state.teamReducer.teamsList
+    teamsList: state.teamReducer.teamsList,
   };
 };
 
-const RenderDrives = props => {
+const RenderDrives = (props) => {
   console.log(props.drives);
   if (props.drives) {
     return (
@@ -42,7 +43,7 @@ const RenderDrives = props => {
             <p className="text-sm">Time Elapsed</p>
           </div>
         </div>
-        {props.drives.map(drive => {
+        {props.drives.map((drive) => {
           return (
             <div className="flex justify-around">
               <div className="mx-5 w-32">
@@ -83,7 +84,7 @@ class GameModule extends Component {
       open: false,
       gameAbs: null,
       gameStats: null,
-      gameDrives: null
+      gameDrives: null,
     };
     console.log(props);
 
@@ -93,15 +94,16 @@ class GameModule extends Component {
   handleExpand() {
     this.setState({ open: !this.state.open });
     if (!this.state.gameDrives) {
-      axios.get(`/api/games/ABS/${this.props.id}`).then(res => {
+      axios.get(`/api/games/ABS/${this.props.id}`).then((res) => {
         this.setState({
           gameAbs: res.data[0],
           gameStats: res.data[1],
-          gameDrives: res.data[2]
+          gameDrives: res.data[2],
         });
       });
     }
   }
+
   componentDidUpdate() {
     console.log(this.state);
   }
@@ -110,18 +112,20 @@ class GameModule extends Component {
     return (
       <div
         onClick={() => this.handleExpand()}
-        className="w-full bg-gray-700 text-indigo-400 rounded my-2"
+        className="bg-gray-700 text-indigo-400 items-center h-40 rounded m-2 mx-4 w-1/4 flex items-center"
       >
-        <div className="flex items-center">
-          <div className="mx-2">
-            <FontAwesomeIcon icon={faAngleDown} />
-          </div>
+        <div className="">
+          {/* <div className="mx-2">
+              <FontAwesomeIcon icon={faAngleDown} />
+            </div> */}
           <div className="mx-2">
             <div>Season: {this.props.season}</div>
           </div>
           <div className="mx-2">
             <div>Week: {this.props.week}</div>
           </div>
+        </div>
+        <div>
           <div className="">
             <img className="h-10" src={this.props.homeTeam.logos_1} />
           </div>
@@ -131,9 +135,11 @@ class GameModule extends Component {
           <div className="mx-2">
             <div>{this.props.home_points}</div>
           </div>
-          <div className="mx-2">
-            <div> - </div>
-          </div>
+        </div>
+        <div className="mx-2">
+          <div> - </div>
+        </div>
+        <div>
           <div className="mx-2">
             <div>{this.props.away_points}</div>
           </div>
