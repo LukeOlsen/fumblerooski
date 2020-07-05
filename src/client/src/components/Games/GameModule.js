@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { getAdvancedBoxedScores } from "../../actions/Games/GamesAPI";
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,64 +14,6 @@ const mapStateToProps = (state) => {
   return {
     teamsList: state.teamReducer.teamsList,
   };
-};
-
-const RenderDrives = (props) => {
-  console.log(props.drives);
-  if (props.drives) {
-    return (
-      <div>
-        <div className="flex justify-around">
-          <div className="mx-5 w-32">
-            <p className="text-sm">Offense</p>
-          </div>
-          <div className="mx-5 w-32">
-            <p className="text-sm">Result</p>
-          </div>
-          <div className="mx-5 w-32">
-            <p className="text-sm">Starting Yard Line</p>
-          </div>
-          <div className="mx-5 w-32">
-            <p className="text-sm">End Yard Line</p>
-          </div>
-          <div className="mx-5 w-32">
-            <p className="text-sm">Number of Plays</p>
-          </div>
-          <div className="mx-5 w-32">
-            <p className="text-sm">Time Elapsed</p>
-          </div>
-        </div>
-        {props.drives.map((drive) => {
-          return (
-            <div className="flex justify-around">
-              <div className="mx-5 w-32">
-                <div>{drive.offense}</div>
-              </div>
-              <div className="mx-5 w-32">
-                <div>{drive.drive_result}</div>
-              </div>
-              <div className="mx-5 w-32">
-                <div>{drive.start_yardline}</div>
-              </div>
-              <div className="mx-5 w-32">
-                <div>{drive.end_yardline}</div>
-              </div>
-              <div className="mx-5 w-32">
-                <div>{drive.plays}</div>
-              </div>
-              <div className="mx-5 w-32">
-                <div>
-                  {drive.elapsed_minutes}:{drive.elapsed_seconds}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  } else {
-    return null;
-  }
 };
 
 class GameModule extends Component {
@@ -112,22 +52,22 @@ class GameModule extends Component {
     return (
       <div
         onClick={() => this.handleExpand()}
-        className="bg-gray-700 text-indigo-400 items-center h-40 rounded m-2 mx-4 w-1/4 flex items-center"
+        className="bg-gray-700 text-indigo-400 items-center h-40 rounded-md m-2 mx-4 w-1/4 flex items-center justify-center flex-wrap cursor-pointer border border-gray-700 hover:bg-gray-600 hover:border-white hover:border-gray-500 hover:border-solid"
       >
-        <div className="">
-          {/* <div className="mx-2">
-              <FontAwesomeIcon icon={faAngleDown} />
-            </div> */}
-          <div className="mx-2">
-            <div>Season: {this.props.season}</div>
+        <div className="flex items-center w-full justify-around">
+          <div className="text-2xl">
+            <div>{this.props.season}</div>
           </div>
           <div className="mx-2">
             <div>Week: {this.props.week}</div>
           </div>
         </div>
-        <div>
-          <div className="">
-            <img className="h-10" src={this.props.homeTeam.logos_1} />
+        <div className="flex items-center justify-around w-full">
+          <div className="mx-2">
+            <img
+              className="h-10 w-10 max-w-xs"
+              src={this.props.homeTeam.logos_1}
+            />
           </div>
           <div className="mx-2">
             <div>{this.props.home_team}</div>
@@ -136,23 +76,17 @@ class GameModule extends Component {
             <div>{this.props.home_points}</div>
           </div>
         </div>
-        <div className="mx-2">
-          <div> - </div>
-        </div>
-        <div>
+        <div className="flex items-center w-full justify-around">
           <div className="mx-2">
-            <div>{this.props.away_points}</div>
-          </div>
-          <div className="">
-            <img className="h-10" src={this.props.awayTeam.logos_1} />
+            <img className="h-10 max-w-xs" src={this.props.awayTeam.logos_1} />
           </div>
           <div className="mx-2">
             <div>{this.props.away_team}</div>
           </div>
+          <div className="mx-2">
+            <div>{this.props.away_points}</div>
+          </div>
         </div>
-        {this.state.open ? (
-          <RenderDrives drives={this.state.gameDrives} />
-        ) : null}
       </div>
     );
   }
