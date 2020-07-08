@@ -9,3 +9,5 @@ export const GET_MATCHUP_HISTORY = "GET_MATCHUP_HISTORY";
 export const GET_ABS = "GET_ABS";
 export const LOADING = "LOADING";
 export const DONE_LOADING = "DONE_LOADING";
+export const OPEN_GAME_POPUP = "OPEN_GAME_POPUP";
+export const CLOSE_GAME_POPUP = "CLOSE_GAME_POPUP";

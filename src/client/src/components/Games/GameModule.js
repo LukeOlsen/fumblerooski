@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { getAdvancedBoxedScores } from "../../actions/Games/GamesAPI";
 
@@ -20,33 +19,16 @@ class GameModule extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: false,
-      gameAbs: null,
-      gameStats: null,
-      gameDrives: null,
-    };
-    console.log(props);
+    this.state = {};
 
     this.handleExpand = this.handleExpand.bind(this);
   }
 
   handleExpand() {
-    this.setState({ open: !this.state.open });
-    if (!this.state.gameDrives) {
-      axios.get(`/api/games/ABS/${this.props.id}`).then((res) => {
-        this.setState({
-          gameAbs: res.data[0],
-          gameStats: res.data[1],
-          gameDrives: res.data[2],
-        });
-      });
-    }
+    this.props.getAdvancedBoxedScores(this.props.id);
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
@@ -57,9 +39,6 @@ class GameModule extends Component {
         <div className="flex items-center w-full justify-around">
           <div className="text-2xl">
             <div>{this.props.season}</div>
-          </div>
-          <div className="mx-2">
-            <div>Week: {this.props.week}</div>
           </div>
         </div>
         <div className="flex items-center justify-around w-full">

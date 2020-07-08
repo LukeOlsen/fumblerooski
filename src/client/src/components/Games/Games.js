@@ -5,6 +5,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { getAllGames, getMatchupHistory } from "../../actions/Games/GamesAPI";
 import { loading } from "../../actions/index";
 import GameModule from "./GameModule";
+import GamePopUp from "./GamePopup";
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -21,6 +22,7 @@ const mapStateToProps = (state) => {
     matchupHistory: state.gamesReducer.matchupHistory,
     teamsList: state.teamReducer.teamsList,
     isLoading: state.generalReducer.isLoading,
+    popOpen: state.gamesReducer.gamePopupOpen,
   };
 };
 
@@ -127,6 +129,7 @@ class Games extends Component {
               })
             : null}
         </div>
+        {this.props.popOpen ? <GamePopUp /> : null}
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getGameHistory, getMatchups, getAbs, doneLoading } from "../index";
+import { openGamePopup } from "./GamesIndex";
 
 export function getAllGames(payload) {
   return (dispatch, getState) => {
@@ -23,6 +24,7 @@ export function getAdvancedBoxedScores(gameID) {
   return (dispatch) => {
     axios.get(`/api/games/ABS/${gameID}`).then((res) => {
       dispatch(getAbs(res.data));
+      dispatch(openGamePopup());
       dispatch(doneLoading());
     });
   };
