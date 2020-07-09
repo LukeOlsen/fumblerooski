@@ -15,14 +15,16 @@ function App() {
     <Router>
       <div className="overflow-auto">
         <Route exact path="/" exact component={Home} />
-        <Sidebar className="sm:hidden md:w-3 sm:w-1" />
-        <div className="md:pl-40 flex bg-gray-900 text-gray-300">
-          <Route exact path="/about" component={About} />
-          <Route path="/conferences" component={Conferences} />
-          <Route path="/team/:teamName" component={Team} />
-          <Route path="/rankings" component={Rankings} />
-          <Route path="/recruits" component={Recruits} />
-          <Route path="/games" component={Games} />
+        <div className="grid grid-cols-8">
+          <Sidebar />
+          <div className="md:col-span-7 flex bg-gray-900 text-gray-300">
+            <Route exact path="/about" component={About} />
+            <Route path="/conferences" component={Conferences} />
+            <Route path="/team/:teamName" component={Team} />
+            <Route path="/rankings" component={Rankings} />
+            <Route path="/recruits" component={Recruits} />
+            <Route path="/games" component={Games} />
+          </div>
         </div>
       </div>
     </Router>

@@ -86,7 +86,7 @@ export class Team extends Component {
 
   render() {
     return (
-      <div className="p-2 pl-10 flex-grow max-h-full overflow-y-scroll flex-row min-h-screen">
+      <div className="p-2 flex-grow max-h-screen overflow-y-scroll flex-row">
         {this.props.isLoading ? (
           <Loading />
         ) : (
