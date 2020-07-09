@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { closeGamePopup } from "../../actions/Games/GamesIndex";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closePop: () => dispatch(closeGamePopup),
+    closePop: () => dispatch(closeGamePopup()),
   };
 };
 
@@ -23,9 +25,17 @@ class GamePopUp extends Component {
     return (
       <div
         onClick={() => this.props.closePop()}
-        className="z-10 bg-gray-900 bg-opacity-50 w-full h-full flex justify-center fixed top-0 mt-8"
+        className="z-20 bg-gray-900 bg-opacity-50 w-screen h-screen flex justify-center fixed top-0 mt-8"
       >
-        <div className="bg-gray-600 w-7/12">
+        <div className="bg-gray-600 z-30 rounded p-4">
+          <div className="flex justify-end h-10">
+            <div className="w-4 m-2">
+              <FontAwesomeIcon
+                onClick={() => this.props.closePop()}
+                icon={faTimes}
+              />
+            </div>
+          </div>
           <div className="flex justify-around">
             <div className="mx-5 w-32">
               <p className="text-sm">Offense</p>
