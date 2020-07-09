@@ -25,7 +25,7 @@ class GamePopUp extends Component {
     return (
       <div
         onClick={() => this.props.closePop()}
-        className="z-20 bg-gray-900 bg-opacity-50 w-screen h-screen flex justify-center fixed top-0 mt-8"
+        className="z-20 bg-gray-900 bg-opacity-50 h-screen w-full flex justify-center fixed left-0 top-0 pt-12"
       >
         <div className="bg-gray-600 z-30 rounded p-4">
           <div className="flex justify-end h-10">
