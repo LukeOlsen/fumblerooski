@@ -36,6 +36,7 @@ export default function gamesReducer(
       gamePopupOpen: true,
     });
   } else if (action.type === CLOSE_GAME_POPUP) {
+    console.log("hit");
     return Object.assign({}, state, {
       ...state,
       gamePopupOpen: false,

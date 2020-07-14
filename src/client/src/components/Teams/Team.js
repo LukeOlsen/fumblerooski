@@ -11,7 +11,6 @@ import SimpleMatchup from "./TeamYearMatchups";
 import { loading, doneLoading } from "../../actions/index";
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     team: state.teamReducer.team,
     data: state.teamReducer.data,
@@ -29,7 +28,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTeamData: (team, year) => dispatch(getTeamData(team, year)),
     loading: () => dispatch(loading()),
-    doneLoading: () => dispatch(doneLoading()),
   };
 };
 
@@ -82,6 +80,7 @@ export class Team extends Component {
       this.props.getTeamData(this.props.match.params.teamName, this.state.year);
       currentTeam = this.props.match.params.teamName;
     }
+    console.log(this.props);
   }
 
   render() {
@@ -91,12 +90,15 @@ export class Team extends Component {
           <Loading />
         ) : (
           <div>
-            <div className="flex">
+            <div className="flex pl-2">
               <div className="flex-auto">
-                <p className="text-4xl">
-                  {this.props.match.params.teamName}{" "}
-                  {!this.props.isLoading ? this.props.teamInfo[0].mascot : ""}
-                </p>
+                {!this.props.isLoading ? (
+                  <p className="text-4xl">
+                    {this.props.match.params.teamName +
+                      " " +
+                      this.props.teamInfo[0].mascot}
+                  </p>
+                ) : null}
               </div>
               <div className="flex-auto flex text-center">
                 <form
@@ -135,14 +137,16 @@ export class Team extends Component {
                     </div>
                   </div>
                 </form>
-                <div className="flex-1 text-2xl self-center">
-                  {!this.props.isLoading
-                    ? this.props.teamInfo[0].conference
-                    : ""}
-                </div>
-                <div className="flex-1 text-2xl self-center">
-                  {!this.props.isLoading ? this.props.teamInfo[0].division : ""}
-                </div>
+                {!this.props.isLoading && this.props.teamInfo[0].conference ? (
+                  <div className="flex-1 text-2xl self-center">
+                    {this.props.teamInfo[0].conference}
+                  </div>
+                ) : null}
+                {!this.props.isLoading && this.props.teamInfo[0].division ? (
+                  <div className="flex-1 text-2xl self-center">
+                    {this.props.teamInfo[0].division}
+                  </div>
+                ) : null}
                 <div className="flex-1 text-2xl self-center">
                   {!this.props.isLoading
                     ? this.props.teamInfo[0].teamRecord[0].total_wins +
