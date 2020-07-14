@@ -31,15 +31,10 @@ const PPALine = (data) => {
             dataKey="id"
             tick={{ fontSize: 10 }}
           />
-          <YAxis stroke="#efefef" />
+          <YAxis ticks={[-1, -0.5, 0, 0.5, 1]} stroke="#efefef" />
           <Tooltip />
           <Legend />
-          <Line
-            type="monotone"
-            dataKey="Defense"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
+          <Line type="monotone" dataKey="Defense" stroke="#8884d8" />
           <Line type="monotone" dataKey="Offense" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
