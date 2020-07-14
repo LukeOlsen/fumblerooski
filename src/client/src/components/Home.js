@@ -1,19 +1,6 @@
 import React, { Component } from "react";
 import heroImg from "../Images/heroImg2.svg";
-import { urlencoded } from "body-parser";
 import { Link } from "react-router-dom";
-
-// const bgImage = {
-//   backgroundImage: `url(${mainBanner3})`,
-//   width: "100%",
-//   height: "100vh",
-//   backgrounSize: "contain",
-//   backgroundPosition: "center center",
-//   backgroundRepeat: "no-repeat",
-//   margin: "auto",
-//   padding: "0",
-//   opacity: "0.8"
-// };
 
 class Home extends Component {
   constructor(props) {
@@ -24,12 +11,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="bg-gray-100 text-center w-screen">
-        <div className="flex justify-end pr-8">
-          <div className="m-4 hover:text-purple-400 cursor-pointer">ABOUT</div>
-          <div className="m-4 hover:text-purple-400 cursor-pointer">TEAMS</div>
-          <div className="m-4 hover:text-purple-400 cursor-pointer">DEV</div>
-        </div>
+      <div className="bg-gray-900 max-h-screen text-center w-full overflow-auto">
         <div className="justify-center content-center py-20 md:h-screen">
           <div className="lg:pt-16 flex">
             <div className="md:w-1/3 lg:flex-1 px-6 md:mt-10 lg:mx-10 lg:mt-20 m-auto">

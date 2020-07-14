@@ -14,10 +14,10 @@ function App() {
   return (
     <Router>
       <div className="overflow-auto">
-        <Route exact path="/" exact component={Home} />
         <div className="grid grid-cols-8">
           <Sidebar />
           <div className="md:col-span-7 flex bg-gray-900 text-gray-300">
+            <Route exact path="/" exact component={Home} />
             <Route exact path="/about" component={About} />
             <Route path="/conferences" component={Conferences} />
             <Route path="/team/:teamName" component={Team} />
