@@ -29,9 +29,7 @@ class Sidebar extends Component {
   }
 
   setConferenceVisible(e) {
-    console.log("set");
     this.setState({ conferenceVisibile: !this.state.conferenceVisibile });
-    console.log(this.state);
   }
 
   viewTeams(conference) {

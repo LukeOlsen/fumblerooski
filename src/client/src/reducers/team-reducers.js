@@ -13,7 +13,6 @@ export default function teamReducer(state = initialTeams, action) {
       data: action.payload,
     });
   } else if (action.type === SET_TEAM_DATA) {
-    console.log(action.payload);
     return Object.assign({}, state, {
       ...state,
       teamInfo: action.payload[0],

@@ -34,7 +34,7 @@ class GameModule extends Component {
     return (
       <div
         onClick={() => this.handleExpand()}
-        className="bg-gray-700 text-indigo-400 items-center h-40 rounded-md m-2 mx-4 w-1/4 flex items-center justify-center flex-wrap cursor-pointer border border-gray-700 hover:bg-gray-600 hover:border-white hover:border-gray-500 hover:border-solid"
+        className="bg-gray-700 text-indigo-400 items-center h-40 rounded-md m-2 mx-4 w-1/4 flex items-center justify-center flex-wrap cursor-pointer border border-gray-700 hover:bg-gray-600 hover:border-white hover:border-gray-500 hover:border-solid transition duration-150 ease-in-out transform hover:-translate-y-1 hover:scale-105"
       >
         <div className="flex items-center w-full justify-around">
           <div className="text-2xl">

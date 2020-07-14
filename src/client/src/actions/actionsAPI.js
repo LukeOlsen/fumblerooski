@@ -4,34 +4,29 @@ import {
   setData,
   setConference,
   setRankings,
-  setRecruits
+  setRecruits,
 } from "./index";
 
 export function fetchConferenceData(payload) {
   return (dispatch, getState) => {
-    //B12
-    //PAC
-    console.log(payload);
-    Axios.get("/api/conference/" + payload).then(res => {
+    Axios.get("/api/conference/" + payload).then((res) => {
       let confTeams = [];
-      res.data.forEach(team => {
+      res.data.forEach((team) => {
         confTeams.push(team.school);
       });
-      console.log(confTeams);
       dispatch(setConference(confTeams));
     });
   };
 }
 
 export function getRankings(payload) {
-  console.log(payload);
   return (dispatch, getState) => {
     Axios.get(
       "https://api.collegefootballdata.com/rankings?week=" +
         payload.week +
         "&year=" +
         payload.year
-    ).then(res => {
+    ).then((res) => {
       dispatch(setRankings(res.data));
     });
   };

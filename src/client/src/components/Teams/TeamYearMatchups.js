@@ -1,7 +1,6 @@
 import React from "react";
 
 const SimpleMatchup = ({ props }) => {
-  console.log(props);
   return (
     <div className="w-full overflow-auto h-full">
       {props.map((el) => {

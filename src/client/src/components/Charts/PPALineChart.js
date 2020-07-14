@@ -11,7 +11,6 @@ import {
 } from "recharts";
 
 const PPALine = (data) => {
-  console.log(data.PPA[0].data);
   if (data.PPA[0].data.length > 1) {
     return (
       <ResponsiveContainer>

@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getRankings } from "../../actions/actionsAPI";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getRankings: team => dispatch(getRankings(team))
+    getRankings: (team) => dispatch(getRankings(team)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     apRank: state.rankingsReducer.rankings.apRank,
-    cfpRank: state.rankingsReducer.rankings.cfpRank
+    cfpRank: state.rankingsReducer.rankings.cfpRank,
   };
 };
 
@@ -21,7 +21,7 @@ class Rankings extends Component {
 
     this.state = {
       week: "",
-      year: ""
+      year: "",
     };
 
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -30,9 +30,7 @@ class Rankings extends Component {
   }
 
   handleYearChange(event) {
-    // console.log(event.target.value)
     this.setState({ year: event.target.value });
-    console.log(this.props);
   }
 
   handleWeekChange(event) {
@@ -86,7 +84,7 @@ class Rankings extends Component {
           {this.props.apRank.ranks ? (
             <div className="flex-1">
               <h2>AP Poll</h2>
-              {this.props.apRank.ranks.map(rank => {
+              {this.props.apRank.ranks.map((rank) => {
                 return <h4 key={rank.school}>{rank.school}</h4>;
               })}
             </div>
@@ -97,7 +95,7 @@ class Rankings extends Component {
             <div className="flex-1">
               <h2>CFP Poll</h2>
               {this.props.cfpRank.ranks
-                ? this.props.cfpRank.ranks.map(rank => {
+                ? this.props.cfpRank.ranks.map((rank) => {
                     return <h4 key={rank.school}>{rank.school}</h4>;
                   })
                 : ""}

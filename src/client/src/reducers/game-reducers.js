@@ -11,7 +11,6 @@ export default function gamesReducer(
   action
 ) {
   if (action.type === GET_GAME_HISTORY) {
-    console.log(action.payload);
     return Object.assign({}, state, {
       ...state,
       gameHistory: action.payload,
@@ -36,7 +35,6 @@ export default function gamesReducer(
       gamePopupOpen: true,
     });
   } else if (action.type === CLOSE_GAME_POPUP) {
-    console.log("hit");
     return Object.assign({}, state, {
       ...state,
       gamePopupOpen: false,
