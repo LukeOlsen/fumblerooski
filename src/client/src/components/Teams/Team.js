@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import qs from "qs";
 import { connect } from "react-redux";
 import { getTeamData } from "../../actions/Teams/TeamsAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,6 +52,28 @@ export class Team extends Component {
 
     this.state = {
       year: 2019,
+      selectableYears: [
+        2019,
+        2018,
+        2017,
+        2016,
+        2015,
+        2014,
+        2013,
+        2012,
+        2011,
+        2010,
+        2009,
+        2008,
+        2007,
+        2006,
+        2005,
+        2004,
+        2003,
+        2002,
+        2001,
+        2000,
+      ],
     };
 
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -59,6 +82,10 @@ export class Team extends Component {
 
   handleYearChange(event) {
     this.setState({ year: event.target.value });
+    this.props.history.push({
+      pathname: `/team/${this.props.match.params.teamName}`,
+      search: `?year=${event.target.value}`,
+    });
     this.props.getTeamData(
       this.props.match.params.teamName,
       event.target.value
@@ -70,7 +97,15 @@ export class Team extends Component {
   }
 
   componentDidMount() {
-    this.props.getTeamData(this.props.match.params.teamName, this.state.year);
+    if (this.props.history.location.search) {
+      const qVal = qs.parse(this.props.history.location.search, {
+        ignoreQueryPrefix: true,
+      });
+      this.setState({ year: qVal.year });
+      this.props.getTeamData(this.props.match.params.teamName, qVal.year);
+    } else {
+      this.props.getTeamData(this.props.match.params.teamName, this.state.year);
+    }
     currentTeam = this.props.match.params.teamName;
   }
 
@@ -80,7 +115,6 @@ export class Team extends Component {
       this.props.getTeamData(this.props.match.params.teamName, this.state.year);
       currentTeam = this.props.match.params.teamName;
     }
-    console.log(this.props);
   }
 
   render() {
@@ -92,7 +126,7 @@ export class Team extends Component {
           <div>
             <div className="flex pl-2">
               <div className="flex-auto">
-                {!this.props.isLoading ? (
+                {!this.props.isLoading && this.props.teamInfo[0] ? (
                   <p className="text-4xl">
                     {this.props.match.params.teamName +
                       " " +
@@ -105,50 +139,33 @@ export class Team extends Component {
                   className="flex-1 self-center"
                   onSubmit={this.handleYearSubmit}
                 >
-                  <div className="inline-block relative w-20 rounded">
+                  <div className="inline-block relative w-20 rounded text-indigo-400">
                     <select
-                      className="block leading-tight text-black mr-10 w-30 appearance-none py-1 px-2 pr-12 rounded"
-                      value={this.state.teamYear}
+                      className="block leading-tight mr-10 w-30 appearance-none py-1 px-2 pr-12 rounded cursor-pointer hover:bg-gray-600 bg-gray-700"
+                      value={this.state.year}
                       onChange={this.handleYearChange}
                     >
-                      <option>2019</option>
-                      <option>2018</option>
-                      <option>2017</option>
-                      <option>2016</option>
-                      <option>2015</option>
-                      <option>2014</option>
-                      <option>2013</option>
-                      <option>2012</option>
-                      <option>2011</option>
-                      <option>2010</option>
-                      <option>2009</option>
-                      <option>2008</option>
-                      <option>2007</option>
-                      <option>2006</option>
-                      <option>2005</option>
-                      <option>2004</option>
-                      <option>2003</option>
-                      <option>2002</option>
-                      <option>2001</option>
-                      <option>2000</option>
+                      {this.state.selectableYears.map((year) => {
+                        return <option>{year}</option>;
+                      })}
                     </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 left-2 flex items-center text-gray-700">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 left-2 flex items-center">
                       <FontAwesomeIcon icon={faAngleDown} />
                     </div>
                   </div>
                 </form>
-                {!this.props.isLoading && this.props.teamInfo[0].conference ? (
+                {!this.props.isLoading && this.props.teamInfo[0] ? (
                   <div className="flex-1 text-2xl self-center">
                     {this.props.teamInfo[0].conference}
                   </div>
                 ) : null}
-                {!this.props.isLoading && this.props.teamInfo[0].division ? (
+                {!this.props.isLoading && this.props.teamInfo[0] ? (
                   <div className="flex-1 text-2xl self-center">
                     {this.props.teamInfo[0].division}
                   </div>
                 ) : null}
                 <div className="flex-1 text-2xl self-center">
-                  {!this.props.isLoading
+                  {!this.props.isLoading && this.props.teamInfo[0]
                     ? this.props.teamInfo[0].teamRecord[0].total_wins +
                       "-" +
                       this.props.teamInfo[0].teamRecord[0].total_losses
@@ -158,25 +175,25 @@ export class Team extends Component {
             </div>
             <div className="flex flex-wrap flex-col md:flex-row">
               <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
-                {!this.props.isLoading ? (
+                {!this.props.isLoading && this.props.PPA ? (
                   <PPALine PPA={this.props.PPA} />
                 ) : null}
               </div>
             </div>
             <div className="flex">
               <div className="bg-gray-700 rounded m-2 h-64 sm:flex-1 md:flex-1/3">
-                {!this.props.isLoading ? (
+                {!this.props.isLoading && this.props.yearRecord ? (
                   <SimpleMatchup props={this.props.yearRecord} />
                 ) : null}
               </div>
               <div className="bg-gray-700 rounded m-2 h-64 sm:flex-1 md:flex-1/3">
-                {!this.props.isLoading ? (
+                {!this.props.isLoading && this.props.BCR ? (
                   <BCRPieChart data={this.props.BCR} />
                 ) : null}
               </div>
             </div>
             <div className="bg-gray-700 rounded m-2">
-              {this.props.isLoading ? (
+              {this.props.isLoading && this.props.recruits ? (
                 ""
               ) : (
                 <RecruitsTable recruits={[this.props.recruits]} />

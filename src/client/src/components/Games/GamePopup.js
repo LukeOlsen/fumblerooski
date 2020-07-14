@@ -25,11 +25,11 @@ class GamePopUp extends Component {
     return (
       <div
         onClick={() => this.props.closePop()}
-        className="z-20 bg-gray-900 bg-opacity-50 h-screen w-full flex justify-center fixed left-0 top-0 pt-12"
+        className="z-20 bg-gray-900 bg-opacity-50 w-full h-screen flex justify-center fixed left-0 top-0 pt-12"
       >
-        <div className="bg-gray-600 z-30 rounded p-4 transform transition translate-y-1 ease-in duration-500">
+        <div className="bg-gray-600 z-30 max-h-1/2 rounded p-4 transform transition translate-y-1 ease-in duration-500 overflow-auto">
           <div className="flex justify-end align-middle">
-            <div className="hover:text-red-500 text-3xl cursor-pointer">
+            <div className="hover:text-red-500 text-2xl cursor-pointer fixed top-0">
               <FontAwesomeIcon
                 onClick={() => this.props.closePop()}
                 icon={faTimes}
