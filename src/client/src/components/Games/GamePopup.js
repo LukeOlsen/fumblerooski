@@ -16,6 +16,26 @@ const mapStateToProps = (state) => {
   };
 };
 
+const FormatTime = (props) => {
+  let minFormat;
+  let secFormat;
+  if (!props.min) {
+    minFormat = "0";
+  } else {
+    minFormat = props.min;
+  }
+
+  if (!props.sec) {
+    secFormat = "00";
+  } else if (props.sec.toString().length === 1) {
+    secFormat = "0" + props.sec;
+  } else {
+    secFormat = props.sec;
+  }
+
+  return <span>{minFormat + ":" + secFormat}</span>;
+};
+
 class GamePopUp extends Component {
   constructor(props) {
     super(props);
@@ -36,52 +56,55 @@ class GamePopUp extends Component {
               />
             </div>
           </div>
-          <div className="flex justify-around">
-            <div className="mx-5 w-32">
-              <p className="text-sm">Offense</p>
-            </div>
-            <div className="mx-5 w-32">
-              <p className="text-sm">Result</p>
-            </div>
-            <div className="mx-5 w-32">
-              <p className="text-sm">Starting Yard Line</p>
-            </div>
-            <div className="mx-5 w-32">
-              <p className="text-sm">End Yard Line</p>
-            </div>
-            <div className="mx-5 w-32">
-              <p className="text-sm">Number of Plays</p>
-            </div>
-            <div className="mx-5 w-32">
-              <p className="text-sm">Time Elapsed</p>
-            </div>
-          </div>
-          {this.props.drives.map((drive) => {
-            return (
-              <div className="flex justify-around">
-                <div className="mx-5 w-32">
-                  <div>{drive.offense}</div>
-                </div>
-                <div className="mx-5 w-32">
-                  <div>{drive.drive_result}</div>
-                </div>
-                <div className="mx-5 w-32">
-                  <div>{drive.start_yardline}</div>
-                </div>
-                <div className="mx-5 w-32">
-                  <div>{drive.end_yardline}</div>
-                </div>
-                <div className="mx-5 w-32">
-                  <div>{drive.plays}</div>
-                </div>
-                <div className="mx-5 w-32">
-                  <div>
-                    {drive.elapsed_minutes}:{drive.elapsed_seconds}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          <table className="table-auto border-collapse border-2 border-gray-500 mt-4">
+            <thead>
+              <tr>
+                <th className="border border-gray-400 px-2 py-1">Offense</th>
+                <th className="border border-gray-400 px-2 py-1">Result</th>
+                <th className="border border-gray-400 px-2 py-1">
+                  Starting Yard Line
+                </th>
+                <th className="border border-gray-400 px-2 py-1">
+                  End Yard Line
+                </th>
+                <th className="border border-gray-400 px-2 py-1">
+                  Number of Plays
+                </th>
+                <th className="border border-gray-400 px-2 py-1">
+                  Time Elapsed
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.drives.map((drive) => {
+                return (
+                  <tr>
+                    <td className="border border-gray-400 px-2 py-1">
+                      {drive.offense}
+                    </td>
+                    <td className="border border-gray-400 px-2 py-1">
+                      {drive.drive_result}
+                    </td>
+                    <td className="border border-gray-400 px-2 py-1">
+                      {drive.start_yardline}
+                    </td>
+                    <td className="border border-gray-400 px-2 py-1">
+                      {drive.end_yardline}
+                    </td>
+                    <td className="border border-gray-400 px-2 py-1">
+                      {drive.plays}
+                    </td>
+                    <td className="border border-gray-400 px-2 py-1">
+                      <FormatTime
+                        min={drive.elapsed_minutes}
+                        sec={drive.elapsed_seconds}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     );
