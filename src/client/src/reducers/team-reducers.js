@@ -2,6 +2,7 @@ import {
   SET_TEAM,
   SET_CONFERENCE,
   SET_TEAM_DATA,
+  SET_TEAM_SPRANK,
 } from "../constants/action-types";
 import teamsList from "../data/teamsList";
 import initialTeams from "../data/defaultTeams";
@@ -21,6 +22,11 @@ export default function teamReducer(state = initialTeams, action) {
       ppaAverages: action.payload[4],
       BCR: action.payload[5],
       yearRecord: action.payload[6],
+    });
+  } else if (action.type === SET_TEAM_SPRANK) {
+    return Object.assign({}, state, {
+      ...state,
+      spRank: action.payload[0],
     });
   }
   return state;

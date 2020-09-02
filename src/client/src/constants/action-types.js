@@ -11,3 +11,4 @@ export const LOADING = "LOADING";
 export const DONE_LOADING = "DONE_LOADING";
 export const OPEN_GAME_POPUP = "OPEN_GAME_POPUP";
 export const CLOSE_GAME_POPUP = "CLOSE_GAME_POPUP";
+export const SET_TEAM_SPRANK = "SET_TEAM_SPRANK";

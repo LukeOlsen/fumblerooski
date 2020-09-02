@@ -10,6 +10,7 @@ import {
   GET_ABS,
   LOADING,
   DONE_LOADING,
+  SET_TEAM_SPRANK,
 } from "../constants/action-types";
 
 export function setTeam(payload) {
@@ -54,4 +55,8 @@ export function loading(payload) {
 
 export function doneLoading(payload) {
   return { type: DONE_LOADING, payload };
+}
+
+export function setTeamSPRank(payload) {
+  return { type: SET_TEAM_SPRANK, payload };
 }

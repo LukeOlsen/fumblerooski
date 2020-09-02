@@ -9,6 +9,7 @@ import PPAGameAverages from "../models/PPAGameAverages";
 import TeamFunctions from "../Teams/TeamData";
 import RecruitFunctions from "../recruits/RecruitData";
 import GamesFunctions from "../Games/GamesData";
+import { SPRankings } from "../models/SPRankings";
 
 export const team = Router();
 
@@ -96,6 +97,13 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
           season: req.params.year,
         },
       },
+      // {
+      //   model: SPRankings,
+      //   where: {
+      //     team: req.params.team,
+      //     year: req.params.year,
+      //   },
+      // },
     ],
     order: [
       [{ model: PPAGameAverages, as: "ppaGameAverages" }, "gameId", "ASC"],
@@ -146,5 +154,21 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
 
     .catch((err) => {
       console.log(err);
+    });
+});
+
+team.get("/teamSPRank/:team/:year", async (req, res) => {
+  console.log(req.params.team);
+  SPRankings.findAll({
+    where: {
+      team: req.params.team,
+      year: req.params.year,
+    },
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send(err);
     });
 });

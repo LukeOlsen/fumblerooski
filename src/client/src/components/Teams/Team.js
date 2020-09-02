@@ -7,6 +7,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import RecruitsTable from "../Recruits/RecruitsTable";
 import PPALine from "../Charts/PPALineChart";
 import BCRPieChart from "../Charts/BCRPieChart";
+import SPChartTeam from "../Charts/SPChartTeam";
 import Loading from "../Loading";
 import SimpleMatchup from "./TeamYearMatchups";
 import { loading, doneLoading } from "../../actions/index";
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => {
     teamInfo: state.teamReducer.teamInfo,
     recruits: state.teamReducer.latestRecruits,
     talent: state.teamReducer.latestTalentRating,
+    spRank: state.teamReducer.spRank,
     PPA: state.teamReducer.ppaAverages,
     BCR: state.teamReducer.BCR,
     yearRecord: state.teamReducer.yearRecord,
@@ -190,6 +192,14 @@ export class Team extends Component {
                 {!this.props.isLoading && this.props.BCR ? (
                   <BCRPieChart data={this.props.BCR} />
                 ) : null}
+              </div>
+            </div>
+            <div className="flex">
+              <div className="bg-gray-700 rounded">
+                <SPChartTeam
+                  team={this.props.match.params.teamName}
+                  year={this.state.year}
+                />
               </div>
             </div>
             <div className="bg-gray-700 rounded m-2">
