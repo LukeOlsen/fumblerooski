@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recruiting Table Renders a table of recruits based on data from db 1`] = `
+<div
+  className="text-center pb-2"
+>
+  <table
+    className="m-auto mb-2 w-11/12"
+  >
+    <thead>
+      <tr>
+        <th>
+          Ranking
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Position
+        </th>
+        <th>
+          Height
+        </th>
+        <th>
+          Weight
+        </th>
+        <th>
+          Stars
+        </th>
+        <th>
+          State
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="border"
+        >
+          1
+        </td>
+        <td
+          className="border"
+        >
+          Test
+        </td>
+        <td
+          className="border"
+        >
+          CB
+        </td>
+        <td
+          className="border"
+        >
+          73
+        </td>
+        <td
+          className="border"
+        >
+          182
+        </td>
+        <td
+          className="border"
+        >
+          5
+        </td>
+        <td
+          className="border"
+        >
+          FL
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

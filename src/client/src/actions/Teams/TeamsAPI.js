@@ -11,10 +11,8 @@ export function getTeamData(team, year) {
 }
 
 export function getTeamSPRanking(team, year) {
-  console.log(team, year);
   return (dispatch) => {
     axios.get(`/api/team/teamSPRank/${team}/${year}`).then((res) => {
-      console.log(res);
       dispatch(setTeamSPRank(res.data));
     });
   };

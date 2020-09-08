@@ -14,6 +14,8 @@ import Records from "./Records";
 import Recruits from "./Recruits";
 import PPAGameAverages from "./PPAGameAverages";
 import BetLines from "./BetLines";
+import { SRSRankings } from "./SRSRankings";
+import { SPRankings } from "./SPRankings";
 
 @Table
 export default class SchoolsFBS extends Model<SchoolsFBS> {
@@ -77,4 +79,10 @@ export default class SchoolsFBS extends Model<SchoolsFBS> {
 
   @HasMany(() => BetLines, "away_id")
   awayBet: BetLines[];
+
+  @HasMany(() => SRSRankings, "away_id")
+  srs: SRSRankings[];
+
+  @HasMany(() => SPRankings, "team_id")
+  spRank: SRSRankings[];
 }

@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { RadarChart, ResponsiveContainer } from "recharts";
+import {
+  RadarChart,
+  ResponsiveContainer,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+} from "recharts";
 import { getTeamSPRanking } from "../../actions/Teams/TeamsAPI";
 import { connect } from "react-redux";
 
@@ -27,7 +34,18 @@ class SPChartTeam extends Component {
   render() {
     return (
       <ResponsiveContainer>
-        <RadarChart></RadarChart>
+        <RadarChart data={this.props.spRank}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="subject" />
+          <PolarRadiusAxis angle={30} domain={[0, 150]} />
+          <Radar
+            name="offense"
+            dataKey="dataSet"
+            stroke="#8884d8"
+            fill="#8884d8"
+            fillOpacity={0.8}
+          />
+        </RadarChart>
       </ResponsiveContainer>
     );
   }

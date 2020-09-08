@@ -158,15 +158,23 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
 });
 
 team.get("/teamSPRank/:team/:year", async (req, res) => {
-  console.log(req.params.team);
   SPRankings.findAll({
+    attributes: [
+      "offenseSuccess",
+      "offenseExplosiveness",
+      "offenseRushing",
+      "offensePassing",
+      "offenseStandardDowns",
+      "offensePassingDowns",
+    ],
     where: {
       team: req.params.team,
       year: req.params.year,
     },
   })
-    .then((data) => {
-      res.send(data);
+    .then(async (data: any) => {
+      const formatData = await TeamFunctions.cleanSpRank(data[0].dataValues);
+      res.send(formatData);
     })
     .catch((err) => {
       res.send(err);

@@ -35,6 +35,12 @@ describe("Teams", () => {
       <Team
         loading={true}
         match={{ params: { team: "Team" }, isExact: true, path: "", url: "" }}
+        teamInfo={[
+          {
+            mascot: "animal",
+            teamRecord: [{ total_wins: 11, total_losses: 11 }],
+          },
+        ]}
         getTeamData={jest.fn()}
       />
     );

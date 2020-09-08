@@ -26,7 +26,7 @@ export default function teamReducer(state = initialTeams, action) {
   } else if (action.type === SET_TEAM_SPRANK) {
     return Object.assign({}, state, {
       ...state,
-      spRank: action.payload[0],
+      spRank: action.payload,
     });
   }
   return state;

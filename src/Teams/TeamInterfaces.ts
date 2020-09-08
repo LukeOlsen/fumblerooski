@@ -27,3 +27,9 @@ export interface ppaLineChartData {
   Offense: number;
   Defense: number;
 }
+
+export interface spDataPacket {
+  subject: string;
+  dataSet: number;
+  fullMark: number;
+}

@@ -195,7 +195,7 @@ export class Team extends Component {
               </div>
             </div>
             <div className="flex">
-              <div className="bg-gray-700 rounded">
+              <div className="bg-gray-700 rounded border-black h-64 w-full sm:flex-1 md:flex-1/3 m-2 shadow-lg">
                 <SPChartTeam
                   team={this.props.match.params.teamName}
                   year={this.state.year}
