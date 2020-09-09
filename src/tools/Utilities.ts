@@ -1,6 +1,6 @@
 export namespace Utilities {
   export class Strings {
-    public static async CleanCamelString(str: string): Promise<string> {
+    public static CleanCamelString(str: string): string {
       let splitString: string[] = str.split("");
       let finalString: string = "";
       let tempSplit: string[] = [];

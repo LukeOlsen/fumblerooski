@@ -25,8 +25,8 @@ export default class TeamFunctions {
   public static async cleanSpRank(data: object): Promise<spDataPacket[]> {
     const propNames: Array<string> = Object.keys(data);
     let cleanedData: Array<spDataPacket> = [];
-    propNames.forEach(async (el) => {
-      let tempStr = await Utilities.Strings.CleanCamelString(el);
+    propNames.forEach((el) => {
+      let tempStr: string = Utilities.Strings.CleanCamelString(el);
       cleanedData.push({
         subject: tempStr,
         dataSet: data[el],
