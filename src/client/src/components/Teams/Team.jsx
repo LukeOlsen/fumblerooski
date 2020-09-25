@@ -199,6 +199,7 @@ export class Team extends Component {
                 <SPChartTeam
                   team={this.props.match.params.teamName}
                   year={this.state.year}
+                  conference={this.props.teamInfo[0].conference}
                 />
               </div>
             </div>

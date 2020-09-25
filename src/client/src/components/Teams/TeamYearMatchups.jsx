@@ -2,7 +2,7 @@ import React from "react";
 
 const SimpleMatchup = ({ props }) => {
   return (
-    <div className="w-full overflow-auto h-full">
+    <div className="w-full overflow-auto h-full p-4">
       {props.map((el) => {
         return (
           <div className="flex text-center justify-center">

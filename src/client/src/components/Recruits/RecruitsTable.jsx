@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 const RecruitsTable = (props) => {
-  //   console.log(props.recruits[0]);
   if (props.recruits[0].length > 0) {
     return (
       <div className="text-center pb-2">
