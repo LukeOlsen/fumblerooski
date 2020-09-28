@@ -30,7 +30,6 @@ export default class TeamFunctions {
       cleanedData.push({
         subject: tempStr,
         dataSet: data[el],
-        fullMark: 150,
       });
     });
     return cleanedData;

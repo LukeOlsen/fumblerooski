@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import {
-  RadarChart,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Bar,
   ResponsiveContainer,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
 } from "recharts";
-import { getTeamSPRanking } from "../../actions/Teams/TeamsAPI";
+import {
+  getConferenceSPRanking,
+  getTeamSPRanking,
+} from "../../actions/Teams/TeamsAPI";
 import { connect } from "react-redux";
 import equal from "fast-deep-equal";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,6 +28,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTeamSPRanking: (team, year, side) =>
       dispatch(getTeamSPRanking(team, year, side)),
+    getConferenceSPRanking: (conference, year, side) =>
+      dispatch(getConferenceSPRanking(conference, year, side)),
   };
 };
 
@@ -69,8 +76,8 @@ class SPChartTeam extends Component {
 
   render() {
     return (
-      <div className="h-full p-4">
-        <div className="h-2 flex">
+      <div className="h-full p-2">
+        <div className="h-8 flex mb-4">
           <div className="flex text-center">
             <form className="self-center" onSubmit={this.handleYearSubmit}>
               <div className="inline-block relative w-32 rounded text-indigo-400">
@@ -82,27 +89,27 @@ class SPChartTeam extends Component {
                   <option value="offense">Offense</option>
                   <option value="defense">Defense</option>
                 </select>
-                {/* <div className="pointer-events-none absolute inset-y-0 right-0 left-2 flex items-center">
-                  <FontAwesomeIcon icon={faAngleDown} />
-                </div> */}
               </div>
             </form>
           </div>
         </div>
-        <ResponsiveContainer>
-          <RadarChart data={this.props.spRank}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 130]} />
-            <Radar
-              name="offense"
-              dataKey="dataSet"
-              stroke="#8884d8"
-              fill="#8884d8"
-              fillOpacity={0.8}
-            />
-          </RadarChart>
-        </ResponsiveContainer>
+        <div className="h-64">
+          <ResponsiveContainer>
+            <BarChart data={this.props.spRank}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                tick={{ fontSize: 10 }}
+                interval={0}
+                stroke="#efefef"
+                dataKey="subject"
+              />
+              <YAxis stroke="#efefef" domain={[70, 130]} />
+              <Tooltip />
+              <Legend />
+              <Bar name="offense" dataKey="dataSet" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     );
   }

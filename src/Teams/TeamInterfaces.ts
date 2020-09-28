@@ -31,5 +31,4 @@ export interface ppaLineChartData {
 export interface spDataPacket {
   subject: string;
   dataSet: number;
-  fullMark: number;
 }
