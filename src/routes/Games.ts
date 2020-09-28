@@ -19,7 +19,6 @@ games.get("/history/:team", async (req, res, next) => {
     ],
   })
     .then((g) => {
-      console.log(g);
       res.send(g);
     })
     .catch((err) => {
@@ -65,7 +64,11 @@ games.get("/matchup/:myTeam/:yourTeam", async (req, res, next) => {
     ],
   })
     .then((g) => {
-      res.send(g);
+      if (g) {
+        res.send(g);
+      } else {
+        res.send([0]);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -97,7 +100,6 @@ games.get("/ABS/:gameId", async (req, res) => {
       res.send(result);
     })
     .catch((err) => {
-      console.log(err);
       res.send(err);
     });
 });
