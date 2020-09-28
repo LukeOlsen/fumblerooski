@@ -3,32 +3,37 @@ import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchConferenceData } from "../../actions/actionsAPI";
 import { setTeam } from "../../actions/index";
+import { conferenceTeams } from "./constants";
 import Team from "../Teams/Team";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setTeam: team => dispatch(setTeam(team)),
-    fetchConferenceData: conference => dispatch(fetchConferenceData(conference))
+    setTeam: (team) => dispatch(setTeam(team)),
+    fetchConferenceData: (conference) =>
+      dispatch(fetchConferenceData(conference)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {};
 };
 
-const RenderTeams = props => {
+const RenderTeams = (props) => {
   const teamsList = props.props;
   if (teamsList.length > 0) {
     return (
       <div className="flex flex-row justify-center flex-wrap">
-        {teamsList.map(team => (
+        {teamsList.map((team) => (
           <div onClick={() => props.setTeam(team)} key={team} className="m-8">
             <Link className="Link-style" to={`/team/${team}`}>
               {team}
             </Link>
           </div>
         ))}
-        <Route path={`/team/:teamName`} render={props => <Team {...props} />} />
+        <Route
+          path={`/team/:teamName`}
+          render={(props) => <Team {...props} />}
+        />
       </div>
     );
   } else {
@@ -41,83 +46,8 @@ class Conferences extends Component {
     super(props);
 
     this.state = {
-      conferenceTeams: {
-        SEC: [
-          "Alabama",
-          "Auburn",
-          "Arkansas",
-          "Florida",
-          "Georgia",
-          "Kentucky",
-          "LSU",
-          "Missouri",
-          "Ole Miss",
-          "Vanderbilt",
-          "Texas A&M",
-          "Mississippi State",
-          "South Carolina",
-          "Tennessee"
-        ],
-        ACC: [
-          "Florida State",
-          "Georgia Tech",
-          "Louisville",
-          "Boston College",
-          "NC State",
-          "Duke",
-          "North Carolina",
-          "Wake Forest",
-          "Syracuse",
-          "Pittsburgh",
-          "Clemson",
-          "Virginia",
-          "Virginia Tech",
-          "Miami"
-        ],
-        Pac12: [
-          "Arizona State",
-          "Arizona",
-          "Stanford",
-          "California",
-          "UCLA",
-          "USC",
-          "Colorado",
-          "Oregon State",
-          "Utah",
-          "Washington",
-          "Washington State",
-          "Oregon"
-        ],
-        Big10: [
-          "Northwestern",
-          "Indiana",
-          "Maryland",
-          "Michigan State",
-          "Michigan",
-          "Minnesota",
-          "Nebraska",
-          "Rutgers",
-          "Ohio State",
-          "Penn State",
-          "Wisconsin",
-          "Illinois",
-          "Iowa",
-          "Purdue"
-        ],
-        Big12: [
-          "Iowa State",
-          "Oklahoma State",
-          "Oklahoma",
-          "Baylor",
-          "Texas",
-          "West Virginia",
-          "Kansas",
-          "Kansas State",
-          "TCU",
-          "Texas Tech"
-        ]
-      },
-      currentConference: []
+      conferenceTeams: conferenceTeams,
+      currentConference: [],
     };
     this.setConference = this.setConference.bind(this);
   }
@@ -129,31 +59,33 @@ class Conferences extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="h-screen text-xl px-32 flex-grow text-center max-h-full overflow-y-scroll">
         <h1 className="mb-8 text-6xl">Conferences</h1>
-        <div className="flex flex-row justify-center">
-          {this.state.conferencesApi.map((conference, id) => {
+        <div className="flex flex-row flex-wrap justify-center">
+          {conferenceTeams.map((el, id) => {
             return (
               <div
-                onClick={() => this.setConference(conference[1])}
-                className="m-8"
-                key={id + conference[0]}
+                className="m-8 overflow-auto w-1/4 bg-gray-700 rounded p-4"
+                key={el.conference}
               >
-                <Link
-                  className="Link-style"
-                  to={`${this.props.match.url}/${conference[0]}`}
-                >
-                  {conference[0]}
-                </Link>
+                <div onClick={() => this.setConference(el.conference)}>
+                  {el.conference}
+                </div>
+                {el.teams.map((team) => {
+                  return (
+                    <div className="my-2">
+                      <Link className="Link-style" to={`team/${team}`}>
+                        {team}
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
         </div>
-        <RenderTeams
-          setTeam={this.props.setTeam}
-          props={this.state.currentConference}
-        />
 
         <Route path={`${this.props.match.path}/:conferenceName`} />
       </div>
