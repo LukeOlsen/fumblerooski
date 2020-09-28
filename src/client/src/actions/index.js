@@ -11,6 +11,7 @@ import {
   LOADING,
   DONE_LOADING,
   SET_TEAM_SPRANK,
+  SET_CONFERENCE_SPRANK,
 } from "../constants/action-types";
 
 export function setTeam(payload) {
@@ -59,4 +60,8 @@ export function doneLoading(payload) {
 
 export function setTeamSPRank(payload) {
   return { type: SET_TEAM_SPRANK, payload };
+}
+
+export function setConferenceSPRank(payload) {
+  return { type: SET_CONFERENCE_SPRANK, payload };
 }

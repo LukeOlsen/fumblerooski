@@ -10,6 +10,7 @@ import TeamFunctions from "../Teams/TeamData";
 import RecruitFunctions from "../recruits/RecruitData";
 import GamesFunctions from "../Games/GamesData";
 import { SPRankings } from "../models/SPRankings";
+import { Sequelize } from "sequelize";
 
 export const team = Router();
 
@@ -97,13 +98,6 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
           season: req.params.year,
         },
       },
-      // {
-      //   model: SPRankings,
-      //   where: {
-      //     team: req.params.team,
-      //     year: req.params.year,
-      //   },
-      // },
     ],
     order: [
       [{ model: PPAGameAverages, as: "ppaGameAverages" }, "gameId", "ASC"],
@@ -157,16 +151,26 @@ team.get("/teamData/:team/:year", async (req, res, next) => {
     });
 });
 
-team.get("/teamSPRank/:team/:year", async (req, res) => {
+team.get("/teamSPRank/:team/:year/:side", async (req, res) => {
+  const offenseAtt: string[] = [
+    "offenseSuccess",
+    "offenseExplosiveness",
+    "offenseRushing",
+    "offensePassing",
+    "offenseStandardDowns",
+    "offensePassingDowns",
+  ];
+
+  const defenseAtt: string[] = [
+    "defenseSuccess",
+    "defenseExplosiveness",
+    "defenseRushing",
+    "defensePassing",
+    "defenseStandardDowns",
+    "defensePassingDowns",
+  ];
   SPRankings.findAll({
-    attributes: [
-      "offenseSuccess",
-      "offenseExplosiveness",
-      "offenseRushing",
-      "offensePassing",
-      "offenseStandardDowns",
-      "offensePassingDowns",
-    ],
+    attributes: req.params.side == "offense" ? offenseAtt : defenseAtt,
     where: {
       team: req.params.team,
       year: req.params.year,
@@ -175,6 +179,59 @@ team.get("/teamSPRank/:team/:year", async (req, res) => {
     .then(async (data: any) => {
       const formatData = await TeamFunctions.cleanSpRank(data[0].dataValues);
       res.send(formatData);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+team.get("/conferenceSPRank/:conference/:year/:side", async (req, res) => {
+  const offenseAtt: any = [
+    [Sequelize.fn("AVG", Sequelize.col("offenseSuccess")), "offenseSuccess"],
+    [
+      Sequelize.fn("AVG", Sequelize.col("offenseExplosiveness")),
+      "offenseExplosiveness",
+    ],
+    [Sequelize.fn("AVG", Sequelize.col("offenseRushing")), "offenseRushing"],
+    [Sequelize.fn("AVG", Sequelize.col("offensePassing")), "offensePassing"],
+    [
+      Sequelize.fn("AVG", Sequelize.col("offenseStandardDowns")),
+      "offenseStandardDowns",
+    ],
+    [
+      Sequelize.fn("AVG", Sequelize.col("offensePassingDowns")),
+      "offensePassingDowns",
+    ],
+  ];
+
+  const defenseAtt: any = [
+    [Sequelize.fn("AVG", Sequelize.col("defenseSuccess")), "defenseSuccess"],
+    [
+      Sequelize.fn("AVG", Sequelize.col("defenseExplosiveness")),
+      "defenseExplosiveness",
+    ],
+    [Sequelize.fn("AVG", Sequelize.col("defenseRushing")), "defenseRushing"],
+    [Sequelize.fn("AVG", Sequelize.col("defensePassing")), "defensePassing"],
+    [
+      Sequelize.fn("AVG", Sequelize.col("defenseStandardDowns")),
+      "defenseStandardDowns",
+    ],
+    [
+      Sequelize.fn("AVG", Sequelize.col("defensePassingDowns")),
+      "defensePassingDowns",
+    ],
+  ];
+
+  SPRankings.findAll({
+    attributes: req.params.side === "offense" ? offenseAtt : defenseAtt,
+    where: {
+      conference: req.params.conference,
+      year: req.params.year,
+    },
+  })
+    .then((data: any) => {
+      console.log(data[0].dataValues);
+      res.send(data);
     })
     .catch((err) => {
       res.send(err);

@@ -3,6 +3,7 @@ import {
   SET_CONFERENCE,
   SET_TEAM_DATA,
   SET_TEAM_SPRANK,
+  SET_CONFERENCE_SPRANK,
 } from "../constants/action-types";
 import teamsList from "../data/teamsList";
 import initialTeams from "../data/defaultTeams";
@@ -28,6 +29,21 @@ export default function teamReducer(state = initialTeams, action) {
       ...state,
       spRank: action.payload,
     });
+  } else if (action.type === SET_CONFERENCE_SPRANK) {
+    let modifiedSpRank = [];
+    console.log(action.payload);
+    // teamReducer.spRank.forEach((rank, index) => {
+    //   console.log(action.payload[index].dataSet);
+    //   modifiedSpRank.push({
+    //     ...rank,
+    //     conference: action.payload[index].dataSet,
+    //   });
+    // });
+    // console.log(modifiedSpRank);
+    // return Object.assign({}, state, {
+    //   ...state,
+    //   spRank: modifiedSpRank,
+    // });
   }
   return state;
 }
