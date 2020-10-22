@@ -59,7 +59,6 @@ class Conferences extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="h-screen text-xl px-32 flex-grow text-center max-h-full overflow-y-scroll">
         <h1 className="mb-8 text-6xl">Conferences</h1>
@@ -70,12 +69,15 @@ class Conferences extends Component {
                 className="m-8 overflow-auto w-1/4 bg-gray-700 rounded p-4"
                 key={el.conference}
               >
-                <div onClick={() => this.setConference(el.conference)}>
+                <div
+                  className="text-3xl"
+                  onClick={() => this.setConference(el.conference)}
+                >
                   {el.conference}
                 </div>
                 {el.teams.map((team) => {
                   return (
-                    <div className="my-2">
+                    <div className="my-2 hover:text-indigo-400">
                       <Link className="Link-style" to={`team/${team}`}>
                         {team}
                       </Link>

@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import {
   setTeam,
   setData,
@@ -9,7 +9,7 @@ import {
 
 export function fetchConferenceData(payload) {
   return (dispatch, getState) => {
-    Axios.get("/api/conference/" + payload).then((res) => {
+    axios.get("/api/conference/" + payload).then((res) => {
       let confTeams = [];
       res.data.forEach((team) => {
         confTeams.push(team.school);
@@ -21,13 +21,15 @@ export function fetchConferenceData(payload) {
 
 export function getRankings(payload) {
   return (dispatch, getState) => {
-    Axios.get(
-      "https://api.collegefootballdata.com/rankings?week=" +
-        payload.week +
-        "&year=" +
-        payload.year
-    ).then((res) => {
-      dispatch(setRankings(res.data));
-    });
+    axios
+      .get(
+        "https://api.collegefootballdata.com/rankings?week=" +
+          payload.week +
+          "&year=" +
+          payload.year
+      )
+      .then((res) => {
+        dispatch(setRankings(res.data));
+      });
   };
 }
