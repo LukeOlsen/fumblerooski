@@ -32,3 +32,16 @@ export interface spDataPacket {
   subject: string;
   dataSet: number;
 }
+
+export interface basicTeamData {
+  id: number;
+  school: string;
+  mascot: string;
+  abbreviation: string;
+  conference: string;
+  division: string;
+  color: string;
+  alt_color: string;
+  logos_1: string;
+  logos_2: string;
+}

@@ -3,7 +3,6 @@ dotenv.config();
 import express from "express";
 import * as bodyParser from "body-parser";
 import { api } from "./routes/api";
-import { getData } from "./tools/ScrapeTeamStats";
 
 export const app = express();
 app.use(bodyParser.json());

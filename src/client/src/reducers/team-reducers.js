@@ -4,6 +4,7 @@ import {
   SET_TEAM_DATA,
   SET_TEAM_SPRANK,
   SET_CONFERENCE_SPRANK,
+  PRELOAD_APP_DATA,
 } from "../constants/action-types";
 import teamsList from "../data/teamsList";
 import initialTeams from "../data/defaultTeams";
@@ -31,7 +32,6 @@ export default function teamReducer(state = initialTeams, action) {
     });
   } else if (action.type === SET_CONFERENCE_SPRANK) {
     let modifiedSpRank = [];
-    console.log(action.payload);
     // teamReducer.spRank.forEach((rank, index) => {
     //   console.log(action.payload[index].dataSet);
     //   modifiedSpRank.push({
@@ -44,6 +44,12 @@ export default function teamReducer(state = initialTeams, action) {
     //   ...state,
     //   spRank: modifiedSpRank,
     // });
+  } else if (action.type === PRELOAD_APP_DATA) {
+    console.log(action.payload.conferences);
+    return Object.assign({}, state, {
+      teamList: action.payload.teams,
+      conferenceList: action.payload.conferences,
+    });
   }
   return state;
 }

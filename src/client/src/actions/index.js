@@ -12,6 +12,7 @@ import {
   DONE_LOADING,
   SET_TEAM_SPRANK,
   SET_CONFERENCE_SPRANK,
+  PRELOAD_APP_DATA,
 } from "../constants/action-types";
 
 export function setTeam(payload) {
@@ -64,4 +65,8 @@ export function setTeamSPRank(payload) {
 
 export function setConferenceSPRank(payload) {
   return { type: SET_CONFERENCE_SPRANK, payload };
+}
+
+export function preloadAppData(payload) {
+  return { type: PRELOAD_APP_DATA, payload };
 }
