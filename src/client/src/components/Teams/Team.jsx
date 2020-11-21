@@ -10,7 +10,7 @@ import BCRPieChart from "../Charts/BCRPieChart";
 import SPChartTeam from "../Charts/SPChartTeam";
 import Loading from "../Loading";
 import SimpleMatchup from "./TeamYearMatchups";
-import { loading, doneLoading } from "../../actions/index";
+import { loading } from "../../actions/index";
 
 const mapStateToProps = (state) => {
   return {
@@ -112,7 +112,7 @@ export class Team extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.match.params.teamName != currentTeam) {
+    if (this.props.match.params.teamName !== currentTeam) {
       this.props.loading();
       this.props.getTeamData(this.props.match.params.teamName, this.state.year);
       currentTeam = this.props.match.params.teamName;

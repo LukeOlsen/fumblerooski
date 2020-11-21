@@ -166,7 +166,7 @@ class Games extends Component {
               })
             : null}
           {this.props.matchupHistory.length > 1 &&
-          this.props.matchupHistory[0] != 0 ? (
+          this.props.matchupHistory[0] !== 0 ? (
             this.props.matchupHistory.map((game) => {
               return <GameModule key={game.id} {...game} />;
             })

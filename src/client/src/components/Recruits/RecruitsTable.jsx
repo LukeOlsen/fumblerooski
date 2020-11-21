@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const RecruitsTable = (props) => {
   if (props.recruits[0].length > 0) {
