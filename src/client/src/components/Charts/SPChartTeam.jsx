@@ -15,8 +15,6 @@ import {
 } from "../../actions/Teams/TeamsAPI";
 import { connect } from "react-redux";
 import equal from "fast-deep-equal";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const mapStateToProps = (state) => {
   return {
@@ -94,21 +92,24 @@ class SPChartTeam extends Component {
           </div>
         </div>
         <div className="h-64">
-          <ResponsiveContainer>
-            <BarChart data={this.props.spRank}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                tick={{ fontSize: 10 }}
-                interval={0}
-                stroke="#efefef"
-                dataKey="subject"
-              />
-              <YAxis stroke="#efefef" domain={[70, 130]} />
-              <Tooltip />
-              <Legend />
-              <Bar name="offense" dataKey="dataSet" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
+          {this.props?.spRank?.length > 0 && (
+            <ResponsiveContainer>
+              <BarChart data={this.props.spRank}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  tick={{ fontSize: 10 }}
+                  interval={0}
+                  stroke="#efefef"
+                  dataKey="subject"
+                />
+                <YAxis stroke="#efefef" domain={[70, 130]} />
+                <Tooltip />
+                <Legend />
+                <Bar name="offense" dataKey="dataSet" fill="#8884d8" />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+          {!this.props.spRank?.length && <div>No Data Available</div>}
         </div>
       </div>
     );

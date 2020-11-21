@@ -1,4 +1,9 @@
-import { ppaQueryResults, ppaApi, spDataPacket } from "./TeamInterfaces";
+import {
+  ppaQueryResults,
+  ppaApi,
+  spDataPacket,
+  basicTeamData,
+} from "./TeamInterfaces";
 import { Utilities } from "../tools/Utilities";
 
 export default class TeamFunctions {
@@ -23,15 +28,45 @@ export default class TeamFunctions {
   }
 
   public static async cleanSpRank(data: object): Promise<spDataPacket[]> {
+    let noData = false;
     const propNames: Array<string> = Object.keys(data);
     let cleanedData: Array<spDataPacket> = [];
-    propNames.forEach((el) => {
-      let tempStr: string = Utilities.Strings.CleanCamelString(el);
+    for (let i = 0; i < propNames.length; i++) {
+      if (!data[propNames[i]]) {
+        noData = true;
+        break;
+      }
+      let tempStr: string = Utilities.Strings.CleanCamelString(propNames[i]);
       cleanedData.push({
         subject: tempStr,
-        dataSet: data[el],
+        dataSet: data[propNames[i]],
       });
+    }
+    if (noData) {
+      return [];
+    } else {
+      return cleanedData;
+    }
+  }
+
+  public static groupByConference(data: Array<basicTeamData>): Object {
+    let newObj: object = {};
+    data.forEach((el) => {
+      if (newObj[el.conference]) {
+        newObj[el.conference].push(el.school);
+      } else {
+        newObj[el.conference] = [];
+        newObj[el.conference].push(el.school);
+      }
     });
-    return cleanedData;
+    return newObj;
+  }
+
+  public static buildTeamsObject(data: Array<basicTeamData>): Object {
+    let teamObj = {};
+    data.forEach((el) => {
+      teamObj[el.id] = el;
+    });
+    return teamObj;
   }
 }
